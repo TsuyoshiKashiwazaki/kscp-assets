@@ -1,0 +1,49 @@
+name: Generate manifest
+
+# 全 wp- リポジトリの最新版情報を集約した manifest.json を生成し、
+# 変更があればコミットする。Kashiwazaki SEO ControlPanel が参照する単一データソース。
+#
+# - 4 時間ごとに自動実行（手動実行も可）
+# - GITHUB_TOKEN（認証 5000 req/h）で巡回するため追加のシークレット設定は不要
+
+on:
+  schedule:
+    - cron: "0 */4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generate-manifest
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate manifest.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MANIFEST_OWNER: ${{ github.repository_owner }}
+        run: node tools/generate-manifest.mjs
+
+      - name: Commit if changed
+        run: |
+          if [ -n "$(git status --porcelain manifest.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add manifest.json
+            git commit -m "chore: update manifest.json"
+            git push
+          else
+            echo "manifest.json unchanged."
+          fi
