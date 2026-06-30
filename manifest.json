@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-06-30T07:41:24.402Z",
+  "generated_at": "2026-06-30T10:48:02.335Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -177,7 +177,7 @@
       "type": "plugin",
       "name": "Kashiwazaki Seo Control Panel",
       "latest_version": "1.0.0-dev",
-      "last_updated": "2026-06-30T07:15:18Z",
+      "last_updated": "2026-06-30T08:52:41Z",
       "changelog": "",
       "is_security": false,
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-control-panel",
