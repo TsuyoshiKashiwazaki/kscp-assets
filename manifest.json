@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-07-01T11:47:08.210Z",
+  "generated_at": "2026-07-01T14:04:37.231Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -537,7 +537,7 @@
       "type": "plugin",
       "name": "Kashiwazaki Seo Control Panel",
       "latest_version": "1.0.1",
-      "last_updated": "2026-07-01T11:45:50Z",
+      "last_updated": "2026-07-01T11:53:36Z",
       "changelog": "# Changelog\n\n本プロジェクトの主な変更点を記録します。形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に準拠し、[セマンティック バージョニング](https://semver.org/lang/ja/) を採用します。\n\n## [1.0.1] - 2026-07-01\n\n### Changed\n\n- 更新一覧を再設計（統計タイル・更新ありを上部に表示・バージョン遷移表示・状態を色分け表示）。\n- 更新の種類を「セキュリティ / バグ修正 / 機能」の 3 分類で判定し、複数該当時はすべて表示。導入済みバージョンから最新版までの各更新内容をもとに判定。\n- ダッシュボードウィジェットに「セキュリティ / バグ修正 / 機能」の件数を種類別に表示。\n- 管理画面ヘッダーとダッシュボードに、本プラグインの役割（GitHub 上の wp- プラグイン/テーマの更新情報をお届けする）を示す説明文を追加。\n- 作者ニュースの取得先を最適化し、最新ニュースを正しく取得（取得できない場合は RSS へフォールバック）。\n- 管理画面 CSS の読み込みにファイル更新時刻を付与し、更新時にキャッシュが確実に切り替わるよう改善。\n\n### Fixed\n\n- 監視対象が多い環境で更新ステータスの保存に失敗し、最新の判定結果が反映されないことがある問題を修正。\n\n## [1.0.0] - 2026-06-30\n\n### Added\n\n- 初版リリース。\n- 単一マニフェスト（全 `wp-` プラグイン/テーマの最新版をまとめた JSON）に基づく更新監視。アクセストークン不要・API レート制限の影響なし。\n- インストール済みバージョンと最新版の差分照合（インストール名と公開名の表記揺れを吸収）。\n- セキュリティ更新の強調表示。\n- メール通知（セキュリティ更新は優先即時）。\n- wp-cron による定期チェック。\n- タブ式コントロールパネル（更新一覧・ニュース・設定・診断）。\n- WordPress ダッシュボードへの控えめな更新サマリ表示。\n- 本プラグイン自身の自己更新。\n- 作者ニュース最新 6 件の表示。\n- マニフェスト取得結果の Transient キャッシュ（取得失敗時も直前の良好データを保持）。\n\n[1.0.1]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-control-panel/releases/tag/v1.0.1\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-control-panel/releases/tag/v1.0.0\n",
       "is_security": false,
       "versions": [
