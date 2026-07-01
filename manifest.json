@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-07-01T08:24:39.140Z",
+  "generated_at": "2026-07-01T08:51:46.549Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -22,16 +22,16 @@
         {
           "version": "1.0.1",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
           "version": "1.0.0",
           "types": [
-            "update",
+            "security",
             "bug",
-            "security"
+            "update"
           ]
         }
       ],
@@ -51,15 +51,15 @@
         {
           "version": "1.0.3",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
           "version": "1.0.2",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -97,8 +97,8 @@
         {
           "version": "1.0.1",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -159,38 +159,38 @@
         {
           "version": "1.0.6",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
           "version": "1.0.5",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
           "version": "1.0.4",
           "types": [
+            "security",
             "bug",
-            "update",
-            "security"
+            "update"
           ]
         },
         {
           "version": "1.0.3",
           "types": [
-            "update",
+            "security",
             "bug",
-            "security"
+            "update"
           ]
         },
         {
           "version": "1.0.2",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -403,8 +403,8 @@
         {
           "version": "1.0.2",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -463,8 +463,8 @@
         {
           "version": "1.0.1",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -517,8 +517,8 @@
         {
           "version": "1.0.1",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -537,7 +537,7 @@
       "type": "plugin",
       "name": "Kashiwazaki Seo Control Panel",
       "latest_version": "1.0.0-dev",
-      "last_updated": "2026-06-30T08:52:41Z",
+      "last_updated": "2026-07-01T08:31:22Z",
       "changelog": "# Changelog\n\n本プロジェクトの主な変更点を記録します。形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に準拠し、[セマンティック バージョニング](https://semver.org/lang/ja/) を採用します。\n\n## [1.0.0] - 2026-06-30\n\n### Added\n\n- 初版リリース。\n- 単一マニフェスト（全 `wp-` プラグイン/テーマの最新版をまとめた JSON）に基づく更新監視。アクセストークン不要・API レート制限の影響なし。\n- インストール済みバージョンと最新版の差分照合（インストール名と公開名の表記揺れを吸収）。\n- セキュリティ更新の強調表示。\n- メール通知（セキュリティ更新は優先即時）。\n- wp-cron による定期チェック。\n- タブ式コントロールパネル（更新一覧・ニュース・設定・診断）。\n- WordPress ダッシュボードへの控えめな更新サマリ表示。\n- 本プラグイン自身の自己更新。\n- 作者ニュース最新 6 件の表示。\n- マニフェスト取得結果の Transient キャッシュ（取得失敗時も直前の良好データを保持）。\n\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-control-panel/releases/tag/v1.0.0\n",
       "is_security": false,
       "versions": [
@@ -596,8 +596,8 @@
         {
           "version": "1.0.30",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -622,6 +622,7 @@
         {
           "version": "1.0.26",
           "types": [
+            "security",
             "bug",
             "update"
           ]
@@ -629,6 +630,7 @@
         {
           "version": "1.0.25",
           "types": [
+            "security",
             "bug",
             "update"
           ]
@@ -636,6 +638,7 @@
         {
           "version": "1.0.24",
           "types": [
+            "security",
             "bug",
             "update"
           ]
@@ -649,6 +652,7 @@
         {
           "version": "1.0.22",
           "types": [
+            "security",
             "bug",
             "update"
           ]
@@ -656,8 +660,8 @@
         {
           "version": "1.0.21",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -669,8 +673,8 @@
         {
           "version": "1.0.19",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -709,8 +713,8 @@
         {
           "version": "1.0.13",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -735,8 +739,8 @@
         {
           "version": "1.0.9",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -749,8 +753,8 @@
         {
           "version": "1.0.7",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -763,8 +767,8 @@
         {
           "version": "1.0.5",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -788,6 +792,13 @@
         },
         {
           "version": "1.0.1",
+          "types": [
+            "bug",
+            "update"
+          ]
+        },
+        {
+          "version": "1.0.0",
           "types": [
             "bug",
             "update"
@@ -862,17 +873,17 @@
         {
           "version": "1.0.1",
           "types": [
-            "update",
+            "security",
             "bug",
-            "security"
+            "update"
           ]
         },
         {
           "version": "1.0.0",
           "types": [
-            "update",
+            "security",
             "bug",
-            "security"
+            "update"
           ]
         }
       ],
@@ -904,8 +915,8 @@
         {
           "version": "1.0.1",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -989,8 +1000,8 @@
         {
           "version": "1.0.8",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -1008,8 +1019,8 @@
         {
           "version": "1.0.5",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -1087,8 +1098,8 @@
         {
           "version": "1.0.0",
           "types": [
-            "update",
-            "security"
+            "security",
+            "update"
           ]
         }
       ],
@@ -1108,8 +1119,8 @@
         {
           "version": "1.1.0",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -1136,8 +1147,8 @@
         {
           "version": "1.0.3",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -1182,8 +1193,8 @@
         {
           "version": "1.0.0",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         }
       ],
@@ -1203,8 +1214,8 @@
         {
           "version": "1.0.0",
           "types": [
-            "update",
-            "security"
+            "security",
+            "update"
           ]
         }
       ],
@@ -1224,8 +1235,8 @@
         {
           "version": "1.0.1",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -1309,15 +1320,15 @@
         {
           "version": "1.0.1",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
           "version": "1.0.0",
           "types": [
-            "update",
-            "security"
+            "security",
+            "update"
           ]
         }
       ],
@@ -1364,8 +1375,8 @@
         {
           "version": "1.0.1",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -1399,8 +1410,8 @@
         {
           "version": "1.0.2",
           "types": [
-            "bug",
             "security",
+            "bug",
             "update"
           ]
         },
@@ -1413,8 +1424,8 @@
         {
           "version": "1.0.0",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         }
       ],
@@ -1472,8 +1483,8 @@
         {
           "version": "1.0.1",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -1511,8 +1522,8 @@
         {
           "version": "1.0.1",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -1590,8 +1601,8 @@
         {
           "version": "1.0.0",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         }
       ],
@@ -1631,8 +1642,8 @@
         {
           "version": "1.0.1",
           "types": [
-            "update",
-            "security"
+            "security",
+            "update"
           ]
         },
         {
@@ -1664,8 +1675,8 @@
         {
           "version": "1.0.3",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         }
       ],
@@ -1685,8 +1696,8 @@
         {
           "version": "1.0.0",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         }
       ],
@@ -1727,15 +1738,15 @@
         {
           "version": "1.0.38",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
           "version": "1.0.37",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -1753,15 +1764,15 @@
         {
           "version": "1.0.34",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
           "version": "1.0.33",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -1792,8 +1803,8 @@
         {
           "version": "1.0.28",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -1832,15 +1843,15 @@
         {
           "version": "1.0.22",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
           "version": "1.0.21",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -1852,22 +1863,22 @@
         {
           "version": "1.0.19",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
           "version": "1.0.18",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
           "version": "1.0.17",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
@@ -1902,6 +1913,85 @@
           "types": [
             "update"
           ]
+        },
+        {
+          "version": "1.0.11",
+          "types": [
+            "bug",
+            "update"
+          ]
+        },
+        {
+          "version": "1.0.10",
+          "types": [
+            "bug"
+          ]
+        },
+        {
+          "version": "1.0.9",
+          "types": [
+            "bug",
+            "update"
+          ]
+        },
+        {
+          "version": "1.0.8",
+          "types": [
+            "bug",
+            "update"
+          ]
+        },
+        {
+          "version": "1.0.7",
+          "types": [
+            "bug",
+            "update"
+          ]
+        },
+        {
+          "version": "1.0.6",
+          "types": [
+            "update"
+          ]
+        },
+        {
+          "version": "1.0.5",
+          "types": [
+            "bug",
+            "update"
+          ]
+        },
+        {
+          "version": "1.0.4",
+          "types": [
+            "update"
+          ]
+        },
+        {
+          "version": "1.0.3",
+          "types": [
+            "bug",
+            "update"
+          ]
+        },
+        {
+          "version": "1.0.2",
+          "types": [
+            "update"
+          ]
+        },
+        {
+          "version": "1.0.1",
+          "types": [
+            "bug",
+            "update"
+          ]
+        },
+        {
+          "version": "1.0.0",
+          "types": [
+            "update"
+          ]
         }
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-theme-backbone-seo-llmo",
@@ -1920,22 +2010,22 @@
         {
           "version": "1.0.2",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
           "version": "1.0.1",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         },
         {
           "version": "1.0.0",
           "types": [
-            "update",
-            "bug"
+            "bug",
+            "update"
           ]
         }
       ],

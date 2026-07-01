@@ -76,6 +76,8 @@ function normalizeVersion(tag) {
 	let v = String(tag).trim().replace(/^[vV]/, '');
 	// 末尾の -main / -master / -trunk を除去。
 	v = v.replace(/-(main|master|trunk)$/i, '');
+	// プレリリース識別子の大小差（-DEV/-RC 等）を version_compare が正しく扱えるよう小文字化。
+	v = v.toLowerCase();
 	return /^[0-9][0-9A-Za-z.\-]*$/.test(v) ? v : '';
 }
 
@@ -111,23 +113,49 @@ function isBugfix(text) {
  * 見出しが無い場合のみ本文キーワードで補完する。
  */
 function classifyBlock(block) {
+	const order = ['security', 'bug', 'update'];
 	const types = new Set();
-	const headings = block.match(/^###\s+(.+)$/gim) || [];
-	if (headings.length) {
-		// 構造化ブロック（Keep a Changelog）は ### 見出しのみを信頼する。
-		// 本文の箇条書きに「セキュリティ対策」等の機能説明が混ざっても誤検知しない。
-		for (const h of headings) {
-			const label = h.replace(/^###\s+/i, '').trim().toLowerCase();
-			if (/security|セキュリティ|脆弱/.test(label)) {
+
+	// ### 見出しごとに (ラベル, 本文) へ分割。
+	const lines = String(block).split(/\r?\n/);
+	const sections = [];
+	let curLabel = null;
+	let curBody = [];
+	for (const line of lines) {
+		const m = line.match(/^###\s+(.+?)\s*$/);
+		if (m) {
+			if (null !== curLabel) {
+				sections.push({ label: curLabel.toLowerCase(), body: curBody.join('\n') });
+			}
+			curLabel = m[1];
+			curBody = [];
+		} else if (null !== curLabel) {
+			curBody.push(line);
+		}
+	}
+	if (null !== curLabel) {
+		sections.push({ label: curLabel.toLowerCase(), body: curBody.join('\n') });
+	}
+
+	if (sections.length) {
+		// 構造化ブロック（Keep a Changelog）。見出しラベルで基本分類しつつ、
+		// Fixed/Bug 系セクションの本文にセキュリティ語があれば security も付与する
+		// （「### Fixed - XSS 脆弱性を修正」の取りこぼし防止）。
+		// Added/Changed 等の機能セクション本文は走査しない（「セキュリティ対策」等の
+		// 機能説明を security と誤検知しないため）。
+		for (const s of sections) {
+			if (/security|セキュリティ|脆弱|vulnerab|cve/.test(s.label)) {
 				types.add('security');
-			} else if (/fix|bug|修正|不具合/.test(label)) {
+			} else if (/fix|bug|修正|不具合/.test(s.label)) {
 				types.add('bug');
+				if (isSecurity(s.body)) {
+					types.add('security');
+				}
 			} else {
-				// Added / Changed / Removed / Deprecated など＝機能・通常更新。
 				types.add('update');
 			}
 		}
-		return [...types];
+		return order.filter((k) => types.has(k));
 	}
 	// 見出しが無い自由記述ブロックのみ、本文キーワードで判定。
 	if (isSecurity(block)) {
@@ -139,7 +167,7 @@ function classifyBlock(block) {
 	if (!types.size) {
 		types.add('update');
 	}
-	return [...types];
+	return order.filter((k) => types.has(k));
 }
 
 /**
@@ -177,7 +205,12 @@ function parseChangelog(text) {
 		}
 	}
 	flush();
-	return versions.slice(0, 30);
+	// 上限は実在の CHANGELOG を十分カバーする大きさに設定（古い導入版からの
+	// スパン合成でセキュリティを取りこぼさないため）。超過分のみ切る。
+	if (versions.length > 100) {
+		console.error(`note: changelog has ${versions.length} versions, keeping newest 100`);
+	}
+	return versions.slice(0, 100);
 }
 
 /** リポジトリ内のテキストファイルを取得（無ければ空文字）。 */
