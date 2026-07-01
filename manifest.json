@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-07-01T02:13:09.431Z",
+  "generated_at": "2026-07-01T08:02:00.009Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -368,12 +368,12 @@
       "repo": "wp-plugin-kashiwazaki-seo-poll",
       "type": "plugin",
       "name": "Kashiwazaki Seo Poll",
-      "latest_version": "1.0.4-dev",
-      "last_updated": "2026-04-10T08:39:25Z",
+      "latest_version": "1.0.6-dev",
+      "last_updated": "2026-07-01T06:37:05Z",
       "changelog": "",
       "is_security": false,
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-poll",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-poll/archive/refs/tags/v1.0.4-dev.zip"
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-poll/archive/refs/tags/v1.0.6-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-preprint-landing-page-generator",
