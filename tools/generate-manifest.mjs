@@ -76,7 +76,10 @@ function normalizeVersion(tag) {
 	let v = String(tag).trim().replace(/^[vV]/, '');
 	// 末尾の -main / -master / -trunk を除去。
 	v = v.replace(/-(main|master|trunk)$/i, '');
-	// プレリリース識別子の大小差（-DEV/-RC 等）を version_compare が正しく扱えるよう小文字化。
+	// 作者の運用規約では -dev はタグ命名のみの接尾辞で、公開バージョン番号は X.Y.Z。
+	// 配布・比較・表示に -dev を持ち込まない（ダウンロード先は生タグ名を別途使用）。
+	v = v.replace(/-dev$/i, '');
+	// プレリリース識別子の大小差を version_compare が正しく扱えるよう小文字化。
 	v = v.toLowerCase();
 	return /^[0-9][0-9A-Za-z.\-]*$/.test(v) ? v : '';
 }
