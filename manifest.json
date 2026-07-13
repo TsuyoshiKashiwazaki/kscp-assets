@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-07-13T10:52:40.024Z",
+  "generated_at": "2026-07-13T14:03:15.738Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -44,52 +44,6 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-github-repo-display",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-github-repo-display/archive/refs/tags/v1.0.3-dev.zip"
-    },
-    {
-      "slug": "wp-plugin-kashiwazaki-llmo-md-subdomain",
-      "repo": "wp-plugin-kashiwazaki-llmo-md-subdomain",
-      "type": "plugin",
-      "name": "Kashiwazaki Llmo Md Subdomain",
-      "latest_version": "1.0.3",
-      "last_updated": "2026-05-06T06:30:57Z",
-      "changelog": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [1.0.3] - 2026-05-06\n\n### Added\n- **サブディレモード (root インデックス配信)**: WordPress がサブディレクトリインストール (例: `example.com/subdir/`) のとき、md ホスト root (`https://md.example.com/`) にインデックスページを配信する機能。新ファイル `includes/md-subdir-mode.php`、新設定 `subdir_mode_enabled` / `subdir_mode_type` (`auto` | `custom`) / `subdir_mode_content`、出力タブに UI 追加。default OFF。auto モードは subdir 専用 renderer (`ksmd_render_subdir_root_auto()`) でサイト概要・最近の Markdown コンテンツ一覧・sitemap.xml 誘導・メインサイトリンクを自動生成 (parallel mirror としての宣言を含む)。custom モードはユーザ編集の生 Markdown を配信 (最大 256KB、新定数 `KSMD_SUBDIR_MODE_MAX_BYTES`)。WP がルート install または md_host == home_host の環境では設定保存可だが root short-circuit は実行時に前提条件再チェックして発動しない (副作用ゼロ保証)。`X-Ksmd-Test-Token` HMAC token 経路でキャッシュバイパスをサポート (Diagnostics の Test renderer 互換)。\n- `ksmd_subdir_mode_md_scheme` filter: サブディレモード root URL 構築時の scheme を上書き可能化 (reverse proxy 環境やメイン/md ホストの scheme 不一致対策)。\n\n### Changed\n- `ksmd_send_response()` の第 4 引数 `$canonical_url` を 3 状態化: 文字列 = 明示指定、`null` = `home_url($uri)` フォールバック (従来挙動)、**`false` = canonical ヘッダ非出力** (subdir mode custom 等、対応ページがメインサイトに存在しないケース用)。既存 callers (search route 等) の `null` / 文字列引数の挙動は維持。\n- サブディレモード auto renderer の Markdown link を angle-bracket 形式 `[label](<url>)` に変更 (CommonMark 準拠で `)` を含む URL を許容、`ksmd_rewrite_url_to_md` filter 介在時のリンク構造破綻リスク回避)。\n- サブディレモード root URL の scheme 解決を `wp_parse_url(home_url(), PHP_URL_SCHEME)` ベースに変更 (旧実装の `is_ssl()` ベースは「現在のリクエスト」依存だったため reverse proxy 環境や md ホストの scheme 不一致を生む可能性)。不正値時のみ `is_ssl()` フォールバック。\n- サブディレモード root の最近の Markdown コンテンツセクションが `enabled_post_types` 空配列を尊重するよう修正: ユーザーが対象範囲タブで全 post type を OFF にして空配列保存した場合、空配列を「明示的無効化」として尊重し WP_Query を実行せずセクションを丸ごと省略 (副作用ゼロ哲学準拠)。キー欠落 / 非配列のときのみ既定値 `array('post','page')` にフォールバック。\n- `subdir_mode_content` の sanitize ロジックを新ヘルパ `ksmd_sanitize_subdir_mode_content()` に統一 (旧 `ksmd_sanitize_settings_array()` と output ケース save の重複を解消)。`preg_replace` の `/u` フラグを削除 (除去対象 `\\x00-\\x08\\x0B\\x0C\\x0E-\\x1F` は ASCII range で multi-byte safe のため不要、不正 UTF-8 入力で `null` を返すリスク回避)、`is_string` フォールバック追加。\n- 設定 import 経路 (`ksmd_handle_import_settings()`) で `update_option` 直後に `ksmd_cache_flush_all()` を呼ぶよう修正 (通常 save 経路と対称化、`subdir_mode_content` / `subdir_mode_type` import 後に stale cache が残らないように)。\n\n### Fixed\n- サブディレモード `?md_refresh` の値検証強化: 旧 `isset($_GET['md_refresh'])` のみだった判定を `sanitize_text_field(wp_unslash(...)) === '1'` の厳密値検証に変更 (`?md_refresh=0` `?md_refresh=foo` でも管理者ならキャッシュバイパスしていた問題を解消)。\n- サブディレモード Schema.org blockquote で `get_bloginfo('name')` / `get_bloginfo('description')` に LF/CR が含まれる稀ケースで blockquote 行が崩壊する問題: `$esc` クロージャ内で改行を空白に正規化 (通常運用では no-op)。\n\n## [1.0.2] - 2026-05-03\n\n### Added\n- アクセスログ閲覧画面のページネーション (keyset 方式、PRIMARY KEY id を活用、`Next` / `Prev` リンク、深いページでも一定時間)\n- アクセスログの絞り込みフィルタ (HTTP status / 日時範囲 from-to)、表示件数選択 (50/100/200 件)\n- アクセスログ全件 CSV ダウンロード (admin-post.php 経由、現フィルタ条件で全件、1000 件チャンクのストリーミング、UTF-8 BOM 付き、Excel 互換)\n- CSV インジェクション対策 (`=` `+` `-` `@` TAB CR で始まるセルに `'` を前置、OWASP 推奨)\n- `{prefix}ksmd_access_logs` テーブルに複合インデックス `KEY status_logged_at_id (status, logged_at, id)` を追加 (フィルタクエリ性能向上)\n- nginx / FastCGI 等のリバースプロキシ buffering 抑制 (`X-Accel-Buffering: no` ヘッダ + `ob_end_clean()` + `flush()`)\n- アクセスログ画面の見出しを「アクセスログの設定」「アクセスログの閲覧」に分離 (a11y 改善、見出し重複解消)\n- ダウンロードファイル名に blog_id を含める (multisite 識別: `ksmd-access-logs-blog{N}-YYYYmmdd-HHMMSS.csv`)\n- 全削除ボタンに JavaScript confirm() 追加 (誤削除防止)\n\n### Changed\n- アクセスログテーブルの schema バージョンを `KSMD_VERSION` 連動から独立した値 (`'2'`) に変更 (公開 version とスキーマ進化の独立管理、migration 検出可能化)\n- 既存 `ksmd_get_recent_access_logs( $limit )` 関数は互換のため残し、新たに keyset 対応の `ksmd_access_log_query_page( $args )` を追加\n\n### Fixed\n- Test renderer (Diagnostics タブのプレビュー機能) のセルフリクエストがアクセスログに記録される問題: `X-Ksmd-Test-Token` ヘッダの HMAC 検証 (`ksmd_verify_test_token()`) と UA 一致 を AND 条件で評価して除外。ヘッダ偽装での観測ログ",
-      "is_security": false,
-      "versions": [
-        {
-          "version": "1.0.3",
-          "types": [
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.2",
-          "types": [
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.1",
-          "types": [
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.0",
-          "types": [
-            "update"
-          ]
-        },
-        {
-          "version": "0.1.0",
-          "types": [
-            "update"
-          ]
-        }
-      ],
-      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-llmo-md-subdomain",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-llmo-md-subdomain/archive/refs/tags/v1.0.3-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-all-content-lister",
@@ -912,45 +866,6 @@
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-hamburger-menu/archive/refs/tags/v1.0.1-dev.zip"
     },
     {
-      "slug": "wp-plugin-kashiwazaki-seo-headline-generator",
-      "repo": "wp-plugin-kashiwazaki-seo-headline-generator",
-      "type": "plugin",
-      "name": "Kashiwazaki Seo Headline Generator",
-      "latest_version": "1.0.3",
-      "last_updated": "2026-04-10T08:48:30Z",
-      "changelog": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [1.0.3] - 2026-02-03\n\n### Fixed\n- 目次アンカーリンクで日本語見出しにスクロールしない問題を修正\n  - URLエンコードされた日本語IDを正しくデコードするように修正\n  - `querySelector()`を`getElementById()`に変更し特殊文字を含むIDに対応\n- ショートコードで生成された見出し（FAQプラグイン等）にIDが付与されない問題を修正\n  - フィルター優先度を調整（ショートコード処理後にID付与を実行）\n\n## [1.0.2] - 2026-02-01\n\n### Changed\n- 目次トグルボタンを目次ボックスの下部（フッター）に移動\n- トグルボタンをテキストラベル（「閉じる」/「もっと見る」/「開く」）で表示するように変更\n- チラ見せON時は「もっと見る」、OFF時は「開く」を表示するように動的に切り替え\n\n### Added\n- チラ見せ時のフェード効果（かすれ）- 続きがあることを視覚的に示すグラデーション\n- 各カラースキームに対応したフェードグラデーションを追加\n\n## [1.0.1] - 2026-01-25\n\n### Added\n- 目次のデザイン設定タブ\n  - 6種類のカラースキーム（デフォルト、ブルー、グリーン、オレンジ、パープル、ダーク）\n- 目次閉じた状態でのプレビュー表示（チラ見）機能\n\n### Changed\n- トグルボタンをテキスト（開く/閉じる）からアイコン（シェブロン）に変更\n- トグルアイコンに回転アニメーションを追加\n\n### Fixed\n- 設定タブ間での値保持の問題を修正（デザインタブ保存時に他の設定がリセットされる問題）\n\n## [1.0.0] - 2026-01-25\n\n### Added\n- 見出し分析機能\n  - 見出し構造の視覚的表示\n  - 階層構造バリデーション（階層飛び検出）\n  - 文字数チェック（推奨範囲外の警告）\n  - 記事内の見出し重複検出\n- サイト内カニバリチェック機能\n  - 公開済み記事との類似コンテンツ検出\n  - タイトル・見出しの類似度判定\n- 自動目次生成機能\n  - 投稿・固定ページへの自動挿入\n  - 挿入位置の選択（最初の見出し前/段落後/先頭）\n  - 最小見出し数の設定\n- ショートコード `[kashiwazaki_toc]` 対応\n  - タイトルのカスタマイズ\n- 目次表示オプション\n  - 番号表示（1, 1.1, 1.2... 形式）\n  - 開閉ボタン表示\n  - デフォルト開閉状態の設定\n- スムーススクロール機能\n  - 固定ヘッダーの自動検出\n  - スクロールオフセットの設定\n- エクスポート機能\n  - テキスト形式でコピー\n  - CSV形式でコピー/ダウンロード\n- 管理画面\n  - 見出し分析設定タブ\n  - 目次設定タブ\n  - 使い方タブ\n\n[1.0.3]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-headline-generator/releases/tag/v1.0.3-dev\n[1.0.2]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-headline-generator/releases/tag/v1.0.2\n[1.0.1]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-headline-generator/releases/tag/v1.0.1\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-headline-generator/releases/tag/v1.0.0\n",
-      "is_security": false,
-      "versions": [
-        {
-          "version": "1.0.3",
-          "types": [
-            "bug"
-          ]
-        },
-        {
-          "version": "1.0.2",
-          "types": [
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.1",
-          "types": [
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.0",
-          "types": [
-            "update"
-          ]
-        }
-      ],
-      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-headline-generator",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-headline-generator/archive/refs/tags/v1.0.3-dev.zip"
-    },
-    {
       "slug": "wp-plugin-kashiwazaki-seo-highlight-marker",
       "repo": "wp-plugin-kashiwazaki-seo-highlight-marker",
       "type": "plugin",
@@ -1357,6 +1272,26 @@
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-preprint-landing-page-generator/archive/refs/tags/v1.0.1-dev.zip"
     },
     {
+      "slug": "wp-plugin-kashiwazaki-seo-profilepage-maker",
+      "repo": "wp-plugin-kashiwazaki-seo-profilepage-maker",
+      "type": "plugin",
+      "name": "Kashiwazaki Seo Profilepage Maker",
+      "latest_version": "1.0.0",
+      "last_updated": "2026-06-02T03:05:04Z",
+      "changelog": "# Changelog\n\nこのプロジェクトのすべての重要な変更はこのファイルに記録されます。\n\n書式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に準拠し、\nバージョニングは [セマンティック バージョニング](https://semver.org/lang/ja/) に従います。\n\n## [1.0.0] - 2026-06-02\n\n### Added\n- 初回リリース。\n- 専用プロフィール投稿タイプによる作成・管理機能。\n- JSON-LD 構造化データの自動出力（ProfilePage + Person を中核に、学術論文・記事・書籍・特許・取材・講演・受賞・資格、およびパンくず BreadcrumbList）。\n- URL プレフィックス（/profile/、/member/ 等、複数プレフィックス対応）のカスタマイズ。\n- 標準レイアウトと page7 風レイアウトの表示順プリセット切替。\n- ツール紹介などの汎用カスタムブロック。\n- プロフィール本文・特定セクションを埋め込むショートコード。\n- 添付画像の検証・投稿ごとの権限チェックなどのセキュリティ対策。\n\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-profilepage-maker/releases/tag/v1.0.0\n",
+      "is_security": false,
+      "versions": [
+        {
+          "version": "1.0.0",
+          "types": [
+            "update"
+          ]
+        }
+      ],
+      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-profilepage-maker",
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-profilepage-maker/archive/refs/tags/v1.0.0-dev.zip"
+    },
+    {
       "slug": "wp-plugin-kashiwazaki-seo-published-last-updated-dates",
       "repo": "wp-plugin-kashiwazaki-seo-published-last-updated-dates",
       "type": "plugin",
@@ -1432,6 +1367,32 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-related-posts",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-related-posts/archive/refs/tags/v1.0.3-dev.zip"
+    },
+    {
+      "slug": "wp-plugin-kashiwazaki-seo-rich-preview-manager",
+      "repo": "wp-plugin-kashiwazaki-seo-rich-preview-manager",
+      "type": "plugin",
+      "name": "Kashiwazaki Seo Rich Preview Manager",
+      "latest_version": "2.0.0",
+      "last_updated": "2026-04-02T15:20:06Z",
+      "changelog": "# Changelog\n\nこのプロジェクトのすべての注目すべき変更はこのファイルに記録されます。\n\nフォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、\n[セマンティック バージョニング](https://semver.org/lang/ja/) に準拠しています。\n\n## [2.0.0] - 2026-04-02 — Kashiwazaki SEO OGP Manager から改名・機能拡張\n\n### Added\n- プラグイン名を Kashiwazaki SEO OGP Manager → Kashiwazaki SEO Rich Preview Manager に変更\n- Meta Thumbnail (`<meta name=\"thumbnail\">`) 出力機能を追加\n- PageMap (HTMLコメント形式) 出力機能を追加\n- 全5機能（OGP / Twitter Card / Meta Thumbnail / PageMap / Robots）の一括重複チェック機能を追加\n- 旧プラグイン（Kashiwazaki SEO OGP Manager）の自動無効化＆管理画面通知機能を追加\n- 旧プラグインからのオプション・post meta 自動マイグレーション機能を追加\n- `ksrpm_enable_meta_thumbnail_output` フィルターを追加\n- `ksrpm_enable_pagemap_output` フィルターを追加\n- `ksrpm_enable_robots_max_image_output` フィルターを追加\n- `ksrpm_meta_thumbnail_url` フィルターを追加\n- `ksrpm_pagemap_data` フィルターを追加\n\n### Changed\n- 設定画面をカード形式のUIに刷新（トグルスイッチ、SNS / SERP / AIO バッジ）\n- Robots max-image-preview 出力をOGPブロックから独立した出力ブロックに分離\n- Robots max-image-preview のデフォルトをOFFに変更（WordPress 5.7以降はWP本体が自動出力するため）\n- 設定リンクのURLを修正（add_menu_page対応）\n- 全クラスプレフィックスを `KSOM_` → `KSRPM_` に変更\n- 全フィルター / アクションフックプレフィックスを `ksom_` → `ksrpm_` に変更\n- オプション名を `ksom_options` → `ksrpm_options` に変更\n- post metaキープレフィックスを `_ksom_` → `_ksrpm_` に変更\n\n## [1.0.0] - 2025-01-13 — Kashiwazaki SEO OGP Manager として初回リリース\n\n### Added\n- OGP（Open Graph Protocol）タグ出力機能\n- Twitter Card メタタグ出力機能\n- 投稿タイプごとのOGP出力制御\n- 投稿編集画面のOGP Settingsメタボックス（タイトル、説明、画像、タイプ）\n- OGP画像の自動選択（カスタム画像 → アイキャッチ画像 → デフォルト画像）\n- OGP画像の width / height 自動出力\n- article:タグの動的出力（published_time, modified_time, author, section, tag）\n- Robots Meta（max-image-preview:large）出力機能\n- Facebook App ID 対応\n- Twitter ユーザー名（twitter:site）対応\n- デフォルトOGP画像設定\n- 投稿タイプ一括選択機能\n- 日本語ファイル名画像のURLエンコード対応\n- 管理画面の日本語化\n\n[2.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-rich-preview-manager/compare/v1.0.0...v2.0.0\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-rich-preview-manager/releases/tag/v1.0.0\n",
+      "is_security": false,
+      "versions": [
+        {
+          "version": "2.0.0",
+          "types": [
+            "update"
+          ]
+        },
+        {
+          "version": "1.0.0",
+          "types": [
+            "update"
+          ]
+        }
+      ],
+      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-rich-preview-manager",
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-rich-preview-manager/archive/refs/tags/v2.0.0-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-schema-content-type-builder",
