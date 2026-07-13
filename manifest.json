@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-07-13T01:29:36.563Z",
+  "generated_at": "2026-07-13T06:47:02.066Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -44,52 +44,6 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-github-repo-display",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-github-repo-display/archive/refs/tags/v1.0.3-dev.zip"
-    },
-    {
-      "slug": "wp-plugin-kashiwazaki-llmo-md-subdomain",
-      "repo": "wp-plugin-kashiwazaki-llmo-md-subdomain",
-      "type": "plugin",
-      "name": "Kashiwazaki Llmo Md Subdomain",
-      "latest_version": "1.0.3",
-      "last_updated": "2026-05-06T06:30:57Z",
-      "changelog": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [1.0.3] - 2026-05-06\n\n### Added\n- **サブディレモード (root インデックス配信)**: WordPress がサブディレクトリインストール (例: `example.com/subdir/`) のとき、md ホスト root (`https://md.example.com/`) にインデックスページを配信する機能。新ファイル `includes/md-subdir-mode.php`、新設定 `subdir_mode_enabled` / `subdir_mode_type` (`auto` | `custom`) / `subdir_mode_content`、出力タブに UI 追加。default OFF。auto モードは subdir 専用 renderer (`ksmd_render_subdir_root_auto()`) でサイト概要・最近の Markdown コンテンツ一覧・sitemap.xml 誘導・メインサイトリンクを自動生成 (parallel mirror としての宣言を含む)。custom モードはユーザ編集の生 Markdown を配信 (最大 256KB、新定数 `KSMD_SUBDIR_MODE_MAX_BYTES`)。WP がルート install または md_host == home_host の環境では設定保存可だが root short-circuit は実行時に前提条件再チェックして発動しない (副作用ゼロ保証)。`X-Ksmd-Test-Token` HMAC token 経路でキャッシュバイパスをサポート (Diagnostics の Test renderer 互換)。\n- `ksmd_subdir_mode_md_scheme` filter: サブディレモード root URL 構築時の scheme を上書き可能化 (reverse proxy 環境やメイン/md ホストの scheme 不一致対策)。\n\n### Changed\n- `ksmd_send_response()` の第 4 引数 `$canonical_url` を 3 状態化: 文字列 = 明示指定、`null` = `home_url($uri)` フォールバック (従来挙動)、**`false` = canonical ヘッダ非出力** (subdir mode custom 等、対応ページがメインサイトに存在しないケース用)。既存 callers (search route 等) の `null` / 文字列引数の挙動は維持。\n- サブディレモード auto renderer の Markdown link を angle-bracket 形式 `[label](<url>)` に変更 (CommonMark 準拠で `)` を含む URL を許容、`ksmd_rewrite_url_to_md` filter 介在時のリンク構造破綻リスク回避)。\n- サブディレモード root URL の scheme 解決を `wp_parse_url(home_url(), PHP_URL_SCHEME)` ベースに変更 (旧実装の `is_ssl()` ベースは「現在のリクエスト」依存だったため reverse proxy 環境や md ホストの scheme 不一致を生む可能性)。不正値時のみ `is_ssl()` フォールバック。\n- サブディレモード root の最近の Markdown コンテンツセクションが `enabled_post_types` 空配列を尊重するよう修正: ユーザーが対象範囲タブで全 post type を OFF にして空配列保存した場合、空配列を「明示的無効化」として尊重し WP_Query を実行せずセクションを丸ごと省略 (副作用ゼロ哲学準拠)。キー欠落 / 非配列のときのみ既定値 `array('post','page')` にフォールバック。\n- `subdir_mode_content` の sanitize ロジックを新ヘルパ `ksmd_sanitize_subdir_mode_content()` に統一 (旧 `ksmd_sanitize_settings_array()` と output ケース save の重複を解消)。`preg_replace` の `/u` フラグを削除 (除去対象 `\\x00-\\x08\\x0B\\x0C\\x0E-\\x1F` は ASCII range で multi-byte safe のため不要、不正 UTF-8 入力で `null` を返すリスク回避)、`is_string` フォールバック追加。\n- 設定 import 経路 (`ksmd_handle_import_settings()`) で `update_option` 直後に `ksmd_cache_flush_all()` を呼ぶよう修正 (通常 save 経路と対称化、`subdir_mode_content` / `subdir_mode_type` import 後に stale cache が残らないように)。\n\n### Fixed\n- サブディレモード `?md_refresh` の値検証強化: 旧 `isset($_GET['md_refresh'])` のみだった判定を `sanitize_text_field(wp_unslash(...)) === '1'` の厳密値検証に変更 (`?md_refresh=0` `?md_refresh=foo` でも管理者ならキャッシュバイパスしていた問題を解消)。\n- サブディレモード Schema.org blockquote で `get_bloginfo('name')` / `get_bloginfo('description')` に LF/CR が含まれる稀ケースで blockquote 行が崩壊する問題: `$esc` クロージャ内で改行を空白に正規化 (通常運用では no-op)。\n\n## [1.0.2] - 2026-05-03\n\n### Added\n- アクセスログ閲覧画面のページネーション (keyset 方式、PRIMARY KEY id を活用、`Next` / `Prev` リンク、深いページでも一定時間)\n- アクセスログの絞り込みフィルタ (HTTP status / 日時範囲 from-to)、表示件数選択 (50/100/200 件)\n- アクセスログ全件 CSV ダウンロード (admin-post.php 経由、現フィルタ条件で全件、1000 件チャンクのストリーミング、UTF-8 BOM 付き、Excel 互換)\n- CSV インジェクション対策 (`=` `+` `-` `@` TAB CR で始まるセルに `'` を前置、OWASP 推奨)\n- `{prefix}ksmd_access_logs` テーブルに複合インデックス `KEY status_logged_at_id (status, logged_at, id)` を追加 (フィルタクエリ性能向上)\n- nginx / FastCGI 等のリバースプロキシ buffering 抑制 (`X-Accel-Buffering: no` ヘッダ + `ob_end_clean()` + `flush()`)\n- アクセスログ画面の見出しを「アクセスログの設定」「アクセスログの閲覧」に分離 (a11y 改善、見出し重複解消)\n- ダウンロードファイル名に blog_id を含める (multisite 識別: `ksmd-access-logs-blog{N}-YYYYmmdd-HHMMSS.csv`)\n- 全削除ボタンに JavaScript confirm() 追加 (誤削除防止)\n\n### Changed\n- アクセスログテーブルの schema バージョンを `KSMD_VERSION` 連動から独立した値 (`'2'`) に変更 (公開 version とスキーマ進化の独立管理、migration 検出可能化)\n- 既存 `ksmd_get_recent_access_logs( $limit )` 関数は互換のため残し、新たに keyset 対応の `ksmd_access_log_query_page( $args )` を追加\n\n### Fixed\n- Test renderer (Diagnostics タブのプレビュー機能) のセルフリクエストがアクセスログに記録される問題: `X-Ksmd-Test-Token` ヘッダの HMAC 検証 (`ksmd_verify_test_token()`) と UA 一致 を AND 条件で評価して除外。ヘッダ偽装での観測ログ",
-      "is_security": false,
-      "versions": [
-        {
-          "version": "1.0.3",
-          "types": [
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.2",
-          "types": [
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.1",
-          "types": [
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.0",
-          "types": [
-            "update"
-          ]
-        },
-        {
-          "version": "0.1.0",
-          "types": [
-            "update"
-          ]
-        }
-      ],
-      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-llmo-md-subdomain",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-llmo-md-subdomain/archive/refs/tags/v1.0.3-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-all-content-lister",
@@ -1081,26 +1035,6 @@
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-link-card/archive/refs/tags/v1.0.8-dev.zip"
     },
     {
-      "slug": "wp-plugin-kashiwazaki-seo-link-doctor",
-      "repo": "wp-plugin-kashiwazaki-seo-link-doctor",
-      "type": "plugin",
-      "name": "Kashiwazaki Seo Link Doctor",
-      "latest_version": "1.0.0",
-      "last_updated": "2026-04-10T09:34:51Z",
-      "changelog": "# 変更履歴\r\n\r\nこのプロジェクトの主な変更はこのファイルに記録されます。\r\n\r\nフォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、\r\n[セマンティック バージョニング](https://semver.org/lang/ja/) に準拠しています。\r\n\r\n## [1.0.0] - 2025-12-29\r\n\r\n### 追加\r\n- Kashiwazaki SEO Link Doctor 初回リリース\r\n- 軽量なHEADリクエストによるHTTPステータスチェック\r\n- リアルタイム進捗表示（n/n件、%）\r\n- iframeによるビジュアルプレビュー（ハイライト表示、自動スクロール）\r\n- WordPress transientsを使用した24時間ステータスキャッシュ\r\n- 手動キャッシュクリア機能\r\n- 個別リンク再チェックボタン（キャッシュスキップ）\r\n- ページ全体の一括再チェック\r\n- Excel/スプレッドシート用TSVクリップボードエクスポート\r\n- ソート可能な結果テーブル\r\n- 長いURLの折りたたみ/展開トグル\r\n- 使い方ガイド付き説明書タブ\r\n- 非HTTPスキームの自動除外（tel:, mailto:, javascript:等）\r\n- プラグイン一覧に設定リンク追加\r\n- アンインストール時のキャッシュ自動削除\r\n\r\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-link-doctor/releases/tag/v1.0.0-dev\r\n",
-      "is_security": false,
-      "versions": [
-        {
-          "version": "1.0.0",
-          "types": [
-            "update"
-          ]
-        }
-      ],
-      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-link-doctor",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-link-doctor/archive/refs/tags/v1.0.0-dev.zip"
-    },
-    {
       "slug": "wp-plugin-kashiwazaki-seo-link-weaver",
       "repo": "wp-plugin-kashiwazaki-seo-link-weaver",
       "type": "plugin",
@@ -1411,49 +1345,6 @@
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-published-last-updated-dates/archive/refs/tags/v1.0.2-dev.zip"
     },
     {
-      "slug": "wp-plugin-kashiwazaki-seo-related-posts",
-      "repo": "wp-plugin-kashiwazaki-seo-related-posts",
-      "type": "plugin",
-      "name": "Kashiwazaki Seo Related Posts",
-      "latest_version": "1.0.3",
-      "last_updated": "2026-06-27T05:00:55Z",
-      "changelog": "# Changelog\r\n\r\nAll notable changes to this project will be documented in this file.\r\n\r\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\r\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\r\n\r\n## [1.0.3] - 2026-06-26\r\n\r\n### Security\r\n- CSRF 対策: 設定保存フォームの全 POST 経路（共通設定 / 投稿タイプ別設定 / キャッシュクリア等）に nonce 検証と `manage_options` 権限チェックを一元適用。各フォーム（JavaScript 生成フォームを含む）に nonce フィールドを追加\r\n- 格納型 XSS 対策: 見出しタグ（`heading_tag`）の値を許可リスト方式（`h1`〜`h6` / `div` / `p`、不正値は `h2` にフォールバック）でサニタイズ。保存時・フロント出力時・管理画面表示時のすべてに適用\r\n- メタボックス保存の nonce 検証に `wp_unslash()` を適用\r\n\r\n### Fixed\r\n- カテゴリフィルタ（`filter_categories`）を全検索方式（カテゴリ / タグ / ディレクトリ / タイトル / 抜粋 / 横断）および AI 補完経路・管理画面プレビューに一律適用。許可カテゴリ外の記事が関連記事に混入し得る問題を解消\r\n- 関連記事描画ループ内の変数シャドーイングを解消\r\n- アンインストール時にプラグインのオプション・投稿メタを完全削除（マルチサイト対応の `uninstall.php` を追加）\r\n\r\n### Improved\r\n- アセットの読み込みバージョンから `time()` を除去し、ブラウザキャッシュを有効化\r\n- 未使用の AJAX ハンドラおよびデッドコードを除去\r\n- ドキュメントのキャッシュ方式（post_meta）および AJAX ハンドラ数の記述を実装と整合\r\n\r\n## [1.0.2] - 2026-04-25\r\n\r\n### Fixed\r\n- PHP 8.1+ 互換性: 管理画面で発生していた `strpos(null, ...)` / `str_replace(..., null)` の Deprecated 警告を解消（投稿タイプ別設定ページの `add_submenu_page()` 第1引数 `null` を空文字列 `''` に変更）\r\n- PHP 8.1+ 互換性: 隠しサブメニューページ表示時の `admin-header.php:41` における `strip_tags(null)` Deprecated 警告を解消（`load-{$hook}` アクションでページタイトルをグローバルに補完）\r\n- AJAX 経路 4 箇所の nonce 検証で `$_POST['nonce']` 未定義時に発生していた `Undefined array key` 警告を防御（`isset()` チェック + `wp_unslash()` 適用：`ajax_fetch_related_posts` / `ajax_clear_cache` / `ajax_reset_all_posts_to_defaults` / `ajax_enable_all_posts`）\r\n- AJAX 経路 3 箇所の `$_POST['post_id']` 直接アクセスを `isset()` ガード付きに変更（API クラスを含む）\r\n- 設定保存処理 (`max_posts`) およびその他 2 箇所の `$_POST` 直接アクセスを `isset()` ガード付きに変更\r\n\r\n### Security\r\n- nonce 検証前の `$_POST['nonce']` 直接参照を `isset()` ガードに切り替え、不正リクエスト時のログ汚染を防止\r\n\r\n### Improved\r\n- WordPress 公式パターン（Yoast SEO / Jetpack / Site Kit と同等）に沿った隠しサブメニュー登録方式へ刷新\r\n\r\n## [1.0.1] - 2026-02-01\r\n\r\n### Fixed\r\n- メタボックスのHTML構造（`</div>`タグ欠落）を修正\r\n- 他プラグインのメタボックス開閉が正常に動作しない問題を解消\r\n\r\n## [1.0.0] - 2025-10-30\r\n\r\n### Added\r\n- 3階層設定システム（共通設定・投稿タイプ別設定・個別記事設定）\r\n- OpenAI GPT-4o-mini/4o/4-turbo対応のAI分析機能\r\n- API統計ダッシュボード（成功/失敗率・期間別集計・30日間推移グラフ）\r\n- 投稿タイプ別の一括有効化機能\r\n- 投稿タイプ別の一括デフォルト値リセット機能\r\n- 投稿タイプ別・全体のキャッシュクリア機能\r\n- 投稿タイプ一覧でのキャッシュ数/記事数可視化\r\n- 個別記事での8項目詳細設定（対象投稿タイプ・カテゴリフィルタ・カラーテーマ等）\r\n- APIキーのマスク表示と表示切り替え機能\r\n- 3種類のテンプレート（リスト・グリッド・スライダー）\r\n- 6色のカラーテーマ\r\n- レスポンシブスライダー（デバイス別設定）\r\n- 最大8760時間（365日）のキャッシュ有効期限設定\r\n- ショートコード・ウィジェット・自動挿入の3つの表示方法\r\n\r\n### Fixed\r\n- フォーム入れ子問題によるキャッシュクリアボタンの動作不良を修正\r\n- 確認ダイアログの重複表示を修正\r\n- 投稿タイプ別設定で共通設定が正しく反映されない問題を修正\r\n- 全設定リセット時に個別投稿のカスタムフィールドが削除されない問題を修正\r\n- カスタムフィールドのデフォルト値判定ロジックを改善\r\n\r\n### Improved\r\n- 投稿タイプ別設定一覧に見やすいストライプデザインを適用\r\n- 投稿タイプ名から記事一覧へのリンクを追加\r\n- API呼び出しログの自動クリーンアップ（1年以上前のログを削除）\r\n- セキュリティ強化（APIキーのマスク表示）\r\n",
-      "is_security": true,
-      "versions": [
-        {
-          "version": "1.0.3",
-          "types": [
-            "security",
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.2",
-          "types": [
-            "security",
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.1",
-          "types": [
-            "bug"
-          ]
-        },
-        {
-          "version": "1.0.0",
-          "types": [
-            "bug",
-            "update"
-          ]
-        }
-      ],
-      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-related-posts",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-related-posts/archive/refs/tags/v1.0.3-dev.zip"
-    },
-    {
       "slug": "wp-plugin-kashiwazaki-seo-rich-preview-manager",
       "repo": "wp-plugin-kashiwazaki-seo-rich-preview-manager",
       "type": "plugin",
@@ -1517,45 +1408,6 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-schema-content-type-builder",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-schema-content-type-builder/archive/refs/tags/v1.0.3-dev.zip"
-    },
-    {
-      "slug": "wp-plugin-kashiwazaki-seo-shortcode-collector",
-      "repo": "wp-plugin-kashiwazaki-seo-shortcode-collector",
-      "type": "plugin",
-      "name": "Kashiwazaki Seo Shortcode Collector",
-      "latest_version": "1.0.3",
-      "last_updated": "2026-04-10T09:35:17Z",
-      "changelog": "# Changelog\r\n\r\n## [1.0.3] - 2025-12-29\r\n### Changed\r\n- サムネイルサイズの選択肢をWordPress標準の名称に変更（フルサイズ、大サイズ、中サイズ、サムネイル）\r\n- サムネイルサイズのデフォルトを「フルサイズ」に変更\r\n- READMEと設定・使い方ドキュメントを全面刷新\r\n\r\n## [1.0.2] - 2025-12-15\r\n### Fixed\r\n- Fixed an issue where the \"modified date\" would disappear when using AJAX pagination.\r\n\r\n## [1.0.1] - 2025-12-14\r\n\r\n### Added\r\n- 更新日表示機能を追加（`show_modified`パラメータ）\r\n- 投稿情報セクションに更新日を表示できるように実装\r\n- ウィザードUIに更新日チェックボックスを追加\r\n\r\n### Fixed\r\n- ウィザードで生成されるPHPコードのカルーセル表示で最後の1つが空白になる問題を修正\r\n- カルーセルHTMLに`data-effective-cols`と`data-post-count`属性を追加\r\n\r\n## [1.0.0] - 2025-09-14\r\n\r\n### Added\r\n- 初回リリース\r\n- グリッド、リスト、カルーセルの3つのデザインパターンを実装\r\n- ビジュアルウィザード機能 - コード不要でショートコードを生成\r\n- 投稿タイプ選択機能（標準投稿、固定ページ、カスタム投稿タイプ）\r\n- カテゴリ・タグによるフィルタリング機能\r\n- 高度なカスタマイズオプション（列数、行数、色、配置）\r\n- レスポンシブデザイン対応（モバイル、タブレット、デスクトップ）\r\n- ページネーション機能（数字、前後ナビ、もっと読むボタン）\r\n- 表示要素の個別制御（タイトル、日付、著者、カテゴリ、タグ、抜粋）\r\n- SEO最適化機能（タイトルタグ選択：h1〜h6、div）\r\n- 並び替え機能（日付、タイトル、ランダム、メニュー順）\r\n- カルーセル自動再生機能\r\n- 管理画面での詳細設定\r\n- 多言語対応準備（Text Domain設定）\r\n\r\n### Features\r\n- **グリッドレイアウト**: 最大6列までの柔軟なグリッド表示\r\n- **リストレイアウト**: サムネイル位置を選択可能なリスト表示\r\n- **カルーセル**: タッチ対応の滑らかなカルーセル表示\r\n- **ビジュアルウィザード**: 初心者でも簡単にショートコードを生成\r\n- **プレビュー機能**: リアルタイムでデザインを確認\r\n- **レスポンシブ**: すべてのデバイスで最適化された表示\r\n\r\n### Technical\r\n- WordPress 5.0以上対応\r\n- PHP 7.2以上対応\r\n- jQuery依存（WordPressバンドル版を使用）\r\n- オブジェクト指向設計による保守性の高いコード構造\r\n- WordPress Coding Standardsに準拠\r\n- セキュリティ対策（nonce、エスケープ、サニタイズ）",
-      "is_security": false,
-      "versions": [
-        {
-          "version": "1.0.3",
-          "types": [
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.2",
-          "types": [
-            "bug"
-          ]
-        },
-        {
-          "version": "1.0.1",
-          "types": [
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.0",
-          "types": [
-            "update"
-          ]
-        }
-      ],
-      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-shortcode-collector",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-shortcode-collector/archive/refs/tags/v1.0.3-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-sitemap-from-menu",
