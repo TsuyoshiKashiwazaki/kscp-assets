@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-07-23T13:22:16.353Z",
+  "generated_at": "2026-07-23T17:08:23.682Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -976,7 +976,7 @@
       "type": "plugin",
       "name": "Kashiwazaki Seo Image Viewer",
       "latest_version": "1.0.3",
-      "last_updated": "2026-07-23T13:03:42Z",
+      "last_updated": "2026-07-23T13:27:30Z",
       "changelog": "# 変更履歴\n\nこのプロジェクトのすべての重要な変更はこのファイルに記録されます。\n\nフォーマットは[Keep a Changelog](https://keepachangelog.com/ja/1.0.0/)に基づいており、\n[セマンティックバージョニング](https://semver.org/lang/ja/)に準拠しています。\n\n## [1.0.3] - 2026-02-02\n\n### 修正\n- URLエンコードされた日本語ファイル名の画像でファイルサイズ・画像サイズが取得できない問題を修正\n\n## [1.0.2] - 2026-02-01\n\n### 修正\n- 画像情報取得時のnonce検証を削除（キャッシュ環境での互換性向上）\n\n## [1.0.1] - 2026-02-01\n\n### 追加\n- Lightbox適用ページタイプ設定機能\n  - 投稿ページ\n  - 固定ページ\n  - アーカイブページ（カテゴリー、タグ、日付別など）\n  - ホームページ（投稿一覧）\n  - フロントページ（トップページ）\n  - 検索結果ページ\n  - 添付ファイルページ（画像詳細ページ）\n  - 404エラーページ\n\n## [1.0.0] - 2026-01-25\n\n### 追加\n- リンクのない画像をクリックで拡大表示するLightbox画像ビューア\n- ズーム操作（マウスホイール、ピンチジェスチャー、+/-ボタン）\n- ズーム時のドラッグ/スワイプ移動\n- キーボード対応の前後ナビゲーション（矢印キー）\n- 閉じる機能（オーバーレイクリック、×ボタン、Escapeキー）\n- 画像情報パネル（フォーマット、ファイルサイズ、サイズ、alt属性、URLコピー）\n- カスタマイズ可能なズームアイコン位置（4隅）\n- alt属性の検証と警告\n- 意味のないファイル名のパターン検出\n- 画像サイズ分析\n- ファイル容量閾値警告\n- 次世代フォーマット（WebP/AVIF）検出\n- EWWW Image OptimizerによるWebP検出との互換性\n- 設定可能な重み付けによるSEOスコア算出（0-100点）\n- 全オプションを備えた管理設定ページ\n- 詳細な診断結果を表示する投稿編集画面メタボックス\n- ソート可能な投稿/固定ページ一覧のSEOスコアカラム\n- 設定へのプラグインアクションリンク\n\n[1.0.3]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-image-viewer/releases/tag/v1.0.3-dev\n[1.0.2]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-image-viewer/releases/tag/v1.0.2\n[1.0.1]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-image-viewer/releases/tag/v1.0.1\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-image-viewer/releases/tag/v1.0.0\n",
       "is_security": false,
       "versions": [
