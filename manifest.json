@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-07-25T06:09:19.175Z",
+  "generated_at": "2026-07-25T09:27:35.968Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -1015,78 +1015,6 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-image-viewer",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-image-viewer/archive/refs/tags/v1.0.4-dev.zip"
-    },
-    {
-      "slug": "wp-plugin-kashiwazaki-seo-link-card",
-      "repo": "wp-plugin-kashiwazaki-seo-link-card",
-      "type": "plugin",
-      "name": "Kashiwazaki Seo Link Card",
-      "latest_version": "1.0.8",
-      "last_updated": "2026-04-10T08:59:03Z",
-      "changelog": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [1.0.8] - 2026-02-05\n\n### Added\n- ブロックエディタにID選択タブを追加（投稿IDを直接入力して記事を選択可能）\n- ブロックエディタにURL検索機能を追加（URLやスラッグで記事を検索可能）\n\n### Fixed\n- 投稿タイプドロップダウンがすべてのカスタム投稿タイプを表示するように修正\n- ID選択時にショートコードプレビューに正しく反映されない問題を修正\n- JavaScriptファイルのキャッシュ問題を修正（バージョンパラメータをプラグインバージョンと連動）\n\n## [1.0.7] - 2025-12-28\n\n### Fixed\n- 非UTF-8ページの文字化け問題を修正（Shift_JIS、EUC-JP、ISO-2022-JPに対応）\n\n## [1.0.6] - 2025-12-24\n\n### Added\n- スクレイピング失敗時の簡易デコレーションパネル機能（URLのみの場合でも見栄えの良いカードを表示）\n\n## [1.0.5] - 2025-12-23\n\n### Added\n- OGP画像URLの有効性チェック機能（200以外のレスポンスの場合はフォールバック画像を使用）\n\n### Fixed\n- ブロックエディタの記事検索がタイトル部分一致で正しく動作するように修正（WordPressデフォルト検索からLIKE検索に変更）\n\n## [1.0.4] - 2025-12-10\n\n### Added\n- OGP画像が取得できない場合のフォールバックとしてGoogle Favicon APIを使用（SPA等でog:imageがないサイトでもfaviconを表示）\n\n## [1.0.3] - 2025-12-09\n\n### Fixed\n- post_id指定時に内部リンクデータが取得できないバグを修正（kslc_get_ogp_dataにpost_idを渡すように変更）\n- 相対URL（/path/to/page/）が処理できないバグを修正（home_url()で絶対URLに変換）\n- ブロックエディタでリンクタイプ切替時にデータが消えるバグを修正\n\n### Added\n- ブロックエディタに「設定をクリア」ボタンを追加\n\n## [1.0.2] - 2025-12-08\n\n### Fixed\n- 外部サイトの相対パスOGP画像の絶対パス変換処理を追加 (e.g. npa.go.jp)\n\n## [1.0.1] - 2025-01-18\n\n### Fixed\n- URLエンコード処理の改善（`esc_url()` から `sanitize_url()` へ変更）\n- 特殊文字を含むURLの正しい処理\n- `parse_url()` 失敗時のエラーハンドリング追加\n- キャッシュクリア機能の実装（管理画面から正常に動作）\n\n### Improved\n- 外部サイトへのリクエストヘッダーの最適化\n- User-Agentの一元管理（定数`KSLC_USER_AGENT`追加）\n- フィルターフック追加（`kslc_request_user_agent`, `kslc_request_timeout`, `kslc_request_headers`）\n- タイムアウト設定の延長（10秒 → 15秒）\n\n## [1.0.0] - 2025-11-07\n\n### Added\n- 初回リリース\n- ショートコード `[linkcard url=\"...\"]` によるリンクカード表示機能\n- OGPデータの自動取得機能\n- サムネイル、タイトル、ディスクリプションの表示\n- 外部リンクと内部リンクの自動判別\n- カスタマイズ可能なカラーテーマ（ブルー、グリーン、レッド、グレー、カスタム）\n- サムネイル表示のオン/オフ設定\n- サムネイル位置の設定（左/右）\n- バッジ表示のオン/オフ設定\n- キャッシュ機能（外部リンク6時間、内部リンク72時間のデフォルト設定）\n- 管理画面でのキャッシュクリア機能\n- クリック数のアナリティクス機能\n- データベーステーブルによるクリックログの保存\n- REST API エンドポイントによるクリック追跡\n- 管理画面でのアナリティクスデータ表示\n- サムネイルサイズのカスタマイズ機能\n- カスタムカラーピッカー機能\n- ブロックパターンの登録\n",
-      "is_security": false,
-      "versions": [
-        {
-          "version": "1.0.8",
-          "types": [
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.7",
-          "types": [
-            "bug"
-          ]
-        },
-        {
-          "version": "1.0.6",
-          "types": [
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.5",
-          "types": [
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.4",
-          "types": [
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.3",
-          "types": [
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.2",
-          "types": [
-            "bug"
-          ]
-        },
-        {
-          "version": "1.0.1",
-          "types": [
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.0",
-          "types": [
-            "update"
-          ]
-        }
-      ],
-      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-link-card",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-link-card/archive/refs/tags/v1.0.8-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-link-doctor",
