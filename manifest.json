@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-08-11T00:51:17.143Z",
+  "generated_at": "2026-08-11T04:57:39.582Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -842,11 +842,18 @@
       "repo": "wp-plugin-kashiwazaki-seo-dynamic-date",
       "type": "plugin",
       "name": "Kashiwazaki Seo Dynamic Date",
-      "latest_version": "1.0.0",
-      "last_updated": "2026-04-10T09:49:18Z",
-      "changelog": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [1.0.0] - 2025-10-26\n\n### Added\n- 初回リリース\n- 動的日付表示機能: `[ksdate]` ショートコードで現在の日付を表示\n- カスタム日付フォーマット: PHPの`date()`関数形式に対応\n- オフセット機能: 相対的な日付指定（年・月・週・日）\n- 日付差分計算機能: 過去からの経過時間と未来へのカウントダウン\n  - 年単位の差分計算\n  - 月単位の差分計算\n  - 日単位の差分計算\n- 管理画面の実装\n  - 設定ページ: デフォルト日付フォーマット設定\n  - プレビュー機能: リアルタイムで日付プレビュー\n  - 使い方ガイド: 詳細な使用方法と説明\n  - 使用例: 実用的なコード例とプレビュー\n- 完全日本語化: 管理画面とドキュメント\n- WordPressタイムゾーン対応\n- セキュリティ対策: サニタイズ、エスケープ処理\n\n### Technical Details\n- WordPress 5.8以上に対応\n- PHP 7.4以上に対応\n- 外部ライブラリ不要の軽量実装\n- GPL-2.0-or-laterライセンス\n",
+      "latest_version": "1.0.1",
+      "last_updated": "2026-08-11T01:46:34Z",
+      "changelog": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [1.0.1] - 2026-08-11\n\n### Added\n- `unit` 属性を追加。`year` / `month` / `day`（別名 `y` / `m` / `d`、`年` / `歳` / `月` / `ヶ月` / `ヵ月` / `日`）で単位を明示でき、指定時は数字だけを返します\n- `uninstall.php` を追加。プラグイン削除時に `ksdate_settings` を削除します（無効化では削除しません）\n- LICENSE ファイル（GPL-2.0 全文）を追加\n\n### Changed\n- 未来日付の差分を切り上げに変更。残り4ヶ月で「0年」と表示される問題を解消しました（過去の経過時間は従来どおり切り捨て）\n- `format` は日付書式専用の属性になりました。`diff` 使用時の単位指定には影響しません。`unit` を省略した場合は従来どおり単位付きで出力されるため、既存の記事の表示は変わりません\n\n### Fixed\n- 管理画面「使い方」タブの日付フォーマット文字表が固定日付だった問題を修正（実行時に計算するようになりました）\n- AJAX プレビューの入力を wp_unslash() で正規化\n- HTML エンティティで引用符が書かれたショートコード（例: `[ksdate format=&quot;Y-m-d H:i:s&quot;]`）で、空白を含む値が途中で切れていた問題を修正\n- 管理画面の「現在の出力」「プレビュー」とショートコードの出力が食い違う場合があった問題を修正\n- 設定フォームに `_wpnonce` が二重に出力され、設定が一度も保存できなかった問題を修正\n- `2025-02-30` のような暦として存在しない日付が、誤った数値を返していた問題を修正（例外として空文字を返します）\n- 認識できない `unit`、不正な `offset` を黙って無視していた問題を修正\n- AJAX プレビューに `manage_options` 権限チェックを追加\n- 管理画面の JavaScript を国際化。プレビューボタンが一度押すと英語表記に戻る問題を修正\n- 管理画面タブの値を許可リストで検証するよう変更\n- 既定の日付書式に空文字を保存できてしまう問題を修正\n- リライトルールを登録していないにもかかわらず、有効化・無効化のたびに `flush_rewrite_rules()` を呼んでいた処理を削除\n- ドキュメントの誤記（曜日・管理メニュー名・管理画面タブ名・動作確認済みバージョン）を修正\n\n## [1.0.0] - 2025-10-26\n\n### Added\n- 初回リリース\n- 動的日付表示機能: `[ksdate]` ショートコードで現在の日付を表示\n- カスタム日付フォーマット: PHPの`date()`関数形式に対応\n- オフセット機能: 相対的な日付指定（年・月・週・日）\n- 日付差分計算機能: 過去からの経過時間と未来へのカウントダウン\n  - 年単位の差分計算\n  - 月単位の差分計算\n  - 日単位の差分計算\n- 管理画面の実装\n  - 設定ページ: デフォルト日付フォーマット設定\n  - プレビュー機能: リアルタイムで日付プレビュー\n  - 使い方ガイド: 詳細な使用方法と説明\n  - 使用例: 実用的なコード例とプレビュー\n- 完全日本語化: 管理画面とドキュメント\n- WordPressタイムゾーン対応\n- セキュリティ対策: サニタイズ、エスケープ処理\n\n### Technical Details\n- WordPress 5.8以上に対応\n- PHP 7.4以上に対応\n- 外部ライブラリ不要の軽量実装\n- GPL-2.0-or-laterライセンス\n",
       "is_security": false,
       "versions": [
+        {
+          "version": "1.0.1",
+          "types": [
+            "bug",
+            "update"
+          ]
+        },
         {
           "version": "1.0.0",
           "types": [
@@ -855,7 +862,7 @@
         }
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-dynamic-date",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-dynamic-date/archive/refs/tags/v1.0.0-dev.zip"
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-dynamic-date/archive/refs/tags/v1.0.1-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-faq",
