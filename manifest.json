@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-08-28T03:54:40.684Z",
+  "generated_at": "2026-08-28T15:45:37.838Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -2061,41 +2061,6 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-theme-backbone-seo-llmo",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-theme-backbone-seo-llmo/archive/refs/tags/v1.2.1-dev.zip"
-    },
-    {
-      "slug": "wp-theme-backbone-seo-llmo-child",
-      "repo": "wp-theme-backbone-seo-llmo-child",
-      "type": "theme",
-      "name": "Backbone Seo Llmo Child",
-      "latest_version": "1.0.2",
-      "last_updated": "2026-05-01T13:05:19Z",
-      "changelog": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [1.0.2] - 2026-04-22\n\n### Added\n- カスタムJavaScriptのスタブファイル (js/custom.js) を追加\n\n### Changed\n- カスタマイズ例5・例6の説明を正確に修正（パターン記述例であることを明記）\n- 「コメントを外すだけで有効化」の表現を例1〜4・例7に限定\n- スタイル優先度の記載を「25〜26」から「10〜26」に修正\n\n### Fixed\n- 例1のjs/custom.jsが存在せず404になる問題を修正\n\n## [1.0.1] - 2025-12-25\n\n### Added\n- Translation file loading support (`load_child_theme_textdomain`)\n\n### Changed\n- N/A\n\n### Fixed\n- N/A\n\n## [1.0.0] - 2025-11-10\n\n### Added\n- Initial release of Backbone SEO LLMO Child theme\n- Basic child theme structure with parent theme dependency\n- Style enqueue functionality for both parent and child themes\n- Admin manual page with comprehensive customization guide\n- Comprehensive README.md with installation and customization instructions\n- WordPress.org compatible readme.txt with FAQ and installation guide\n- Sample CSS customization examples in style.css\n- Seven commented code examples in functions.php:\n  - Custom JavaScript loading\n  - Widget area registration\n  - Custom post type registration\n  - Excerpt length customization\n  - Custom hook implementation\n  - Parent function override examples\n  - Custom image size registration\n- Theme screenshot (screenshot.png)\n\n### Changed\n- N/A (Initial release)\n\n### Fixed\n- N/A (Initial release)\n\n---\n\n[1.0.2]: https://github.com/TsuyoshiKashiwazaki/wp-theme-backbone-seo-llmo-child/releases/tag/v1.0.2\n[1.0.1]: https://github.com/TsuyoshiKashiwazaki/wp-theme-backbone-seo-llmo-child/releases/tag/v1.0.1\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-theme-backbone-seo-llmo-child/releases/tag/v1.0.0\n",
-      "is_security": false,
-      "versions": [
-        {
-          "version": "1.0.2",
-          "types": [
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.1",
-          "types": [
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.0",
-          "types": [
-            "bug",
-            "update"
-          ]
-        }
-      ],
-      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-theme-backbone-seo-llmo-child",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-theme-backbone-seo-llmo-child/archive/refs/tags/v1.0.2-dev.zip"
     }
   ]
 }
