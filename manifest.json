@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-08-31T02:04:57.755Z",
+  "generated_at": "2026-08-31T10:13:32.071Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -1746,21 +1746,28 @@
       "repo": "wp-plugin-kashiwazaki-seo-xml-vitalcheck",
       "type": "plugin",
       "name": "Kashiwazaki Seo Xml Vitalcheck",
-      "latest_version": "1.0.0",
-      "last_updated": "2026-03-31T12:11:40Z",
-      "changelog": "# Changelog\r\n\r\n## [1.0.0] - 2025-09-10\r\n\r\n### Added\r\n- XMLサイトマップとRSSフィードの解析機能\r\n- XMLバージョン、フォーマットタイプ、件数の自動判定\r\n- XML内URL到達性チェック機能（50件ずつのチャンク処理）\r\n- 定期実行スケジュール機能（cron対応）\r\n- メール通知機能（チェック結果の自動送信）\r\n- 緊急停止・セッションクリーンアップ機能\r\n- 管理画面UI（URLリスト設定、スケジュール設定）\r\n- セキュリティ対策（管理者権限、nonce検証、サニタイズ処理）\r\n\r\n### Fixed\r\n- 管理画面の保存ボタン位置を改善（スケジュール設定の下に配置）\r\n- URLリスト説明文を明確化（XMLサイトマップとRSSフィードの説明追加）\r\n\r\n### Improved\r\n- XMLアナライザーでの複数フォーマット対応（Sitemap Index、URL Set、RSS、Atom）\r\n- cURL使用時のタイムアウト・エラーハンドリング強化\r\n- 大量URL処理時のメモリ使用量最適化\r\n- 日本時間対応のスケジュール機能",
-      "is_security": false,
+      "latest_version": "1.0.1",
+      "last_updated": "2026-08-31T06:54:24Z",
+      "changelog": "# Changelog\n\n## [1.0.1] - 2026-08-31\n\n### Security\n\n- 管理画面のすべての操作・AJAXエンドポイントで `manage_options` 権限の検証を追加。\n  従来はログイン状態のみを確認していたため、購読者を含む一般ユーザーが\n  設定変更や各種処理を実行できる状態でした\n- 管理メニューの権限を `manage_options` に固定（従来は権限に応じて `read` まで緩和されていた）\n- XML解析AJAXに nonce 検証を追加（従来は未検証）\n- 外部XML由来の値（URL、XMLバージョン、フォーマットタイプ、エラーメッセージ）を\n  管理画面へ表示する際のエスケープを追加。従来は無加工でDOMに挿入していました\n- SSRF対策を追加\n  - スキームを `http` / `https` に限定（`file` / `gopher` / `dict` 等を拒否）\n  - プライベートIP・ループバック・リンクローカル・IANA特殊用途アドレスへの到達を既定で拒否\n    （NAT64 / 6to4 / Teredo に埋め込まれたIPv4、IPv4射影IPv6アドレスを含む）\n  - リダイレクト先を1ホップずつ再検証\n  - 異なるオリジンへ遷移する際に認証ヘッダーとCookieを引き継がないよう変更\n  - 許可ポートを WordPress 本体と同じ基準に統一\n- TLS証明書の検証を常時有効化（従来は無効化されていました）\n- リソース枯渇対策として、レスポンスサイズ上限・タイムアウト・抽出URL件数上限を追加\n- 一時データのキーにユーザーIDを含めて分離し、有効期限切れのデータを自動削除するよう変更\n- オプション削除時の LIKE パターンをエスケープし、意図しないキーが削除されないよう修正\n- 到達不能なコード（無条件に権限を付与するメソッド、キャッシュ全消去処理）を削除\n\n### Fixed\n\n- HTTPステータスと Content-Type を検証せず、404 や 500 の応答本文が XML として\n  解釈できる場合に「正常」と誤判定していた問題を修正\n- 既定名前空間で宣言された Atom フィードを `Feed` と誤判定していた問題を修正\n- 定期実行の時刻に `99:99` のような範囲外の値を保存できた問題を修正\n- 定期実行の解除が1件のみで、重複登録時に重複実行が残る問題を修正\n- 到達性チェックの最終チャンクでフォーマット種別が失われる問題を修正\n- 到達性チェックのチャンク番号に負数や範囲外の値を指定できた問題を修正\n- 名前空間の解決誤りにより例外ハンドラーが機能していなかった問題を修正\n- 抽出URLが上限に達した場合に、切り捨てを通知せず完了と表示していた問題を修正\n- 通信エラー時に表示済みの結果一覧が消える問題を修正\n- 管理画面のCSS/JSがキャッシュされない問題を修正\n- プラグイン本体ファイルの先頭に混入していた UTF-8 BOM を除去\n\n### Changed\n\n- HTTP通信を WordPress HTTP API（`wp_safe_remote_get` / `wp_safe_remote_head`）に統一\n- 到達性チェックの分割単位を調整し、1リクエストの処理時間を短縮\n- 到達性チェックで HEAD が拒否された場合のみ GET で再確認するよう変更\n- 内部ネットワーク宛URLの監視を許可するフィルタ\n  `kashiwazaki_xml_vitalcheck_allow_private_hosts` を追加\n- 到達性チェックのユーザーエージェント偽装を廃止し、専用のユーザーエージェントを送出\n\n### Added\n\n- GPL-2.0 ライセンスファイル\n- `.gitignore`\n\n## [1.0.0] - 2025-09-10\n\n### Added\n- XMLサイトマップとRSSフィードの解析機能\n- XMLバージョン、フォーマットタイプ、件数の自動判定\n- XML内URL到達性チェック機能\n- 定期実行スケジュール機能（cron対応）\n- メール通知機能（チェック結果の自動送信）\n- 管理画面UI（URLリスト設定、スケジュール設定）\n\n### Improved\n- XMLアナライザーでの複数フォーマット対応（Sitemap Index、URL Set、RSS、Atom）\n- 大量URL処理時のメモリ使用量最適化\n- 日本時間対応のスケジュール機能\n\n[1.0.1]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-xml-vitalcheck/releases/tag/v1.0.1\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-xml-vitalcheck/releases/tag/v1.0.0\n",
+      "is_security": true,
       "versions": [
+        {
+          "version": "1.0.1",
+          "types": [
+            "security",
+            "bug",
+            "update"
+          ]
+        },
         {
           "version": "1.0.0",
           "types": [
-            "bug",
             "update"
           ]
         }
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-xml-vitalcheck",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-xml-vitalcheck/archive/refs/tags/v1.0.0-dev.zip"
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-xml-vitalcheck/archive/refs/tags/v1.0.1-dev.zip"
     },
     {
       "slug": "wp-theme-backbone-seo-llmo",
