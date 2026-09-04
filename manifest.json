@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-09-04T18:40:10.589Z",
+  "generated_at": "2026-09-04T21:56:34.985Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -90,33 +90,6 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-llmo-md-subdomain",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-llmo-md-subdomain/archive/refs/tags/v1.0.3-dev.zip"
-    },
-    {
-      "slug": "wp-plugin-kashiwazaki-seo-all-content-lister",
-      "repo": "wp-plugin-kashiwazaki-seo-all-content-lister",
-      "type": "plugin",
-      "name": "Kashiwazaki Seo All Content Lister",
-      "latest_version": "1.0.1",
-      "last_updated": "2026-03-31T12:11:19Z",
-      "changelog": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [1.0.1] - 2026-01-07\n\n### Added\n- 被リンク調査機能（バックグラウンドバッチ処理）\n- 被リンク元カラム（被リンク数と被リンク元記事の表示）\n- リンクマップ視覚化機能（D3.js フォースダイレクトグラフ）\n- ノード選択時のズーム・センタリング機能\n- リンク元（緑）・リンク先（青）のハイライト表示\n\n### Fixed\n- リンクマップのノード選択が動作しない問題を修正\n- 非関連ノードの視覚的な強調を調整\n\n## [1.0.0] - 2026-01-03\n\n### Added\n- コンテンツ一覧表示機能（投稿・固定ページ・カスタム投稿タイプ対応）\n- ソート機能（ID、タイトル、投稿日、更新日など）\n- フィルター機能（投稿タイプ、ステータス、カテゴリー）\n- カラム表示切替機能（ブラウザのlocalStorageに保存）\n- CSV出力機能（UTF-8/Shift_JIS対応）\n\n[1.0.1]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-all-content-lister/releases/tag/v1.0.1-dev\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-all-content-lister/releases/tag/v1.0.0\n",
-      "is_security": false,
-      "versions": [
-        {
-          "version": "1.0.1",
-          "types": [
-            "bug",
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.0",
-          "types": [
-            "update"
-          ]
-        }
-      ],
-      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-all-content-lister",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-all-content-lister/archive/refs/tags/v1.0.1-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-author-panel-manager",
@@ -1489,32 +1462,6 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-related-posts",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-related-posts/archive/refs/tags/v1.0.3-dev.zip"
-    },
-    {
-      "slug": "wp-plugin-kashiwazaki-seo-rich-preview-manager",
-      "repo": "wp-plugin-kashiwazaki-seo-rich-preview-manager",
-      "type": "plugin",
-      "name": "Kashiwazaki Seo Rich Preview Manager",
-      "latest_version": "2.0.0",
-      "last_updated": "2026-04-02T15:20:06Z",
-      "changelog": "# Changelog\n\nこのプロジェクトのすべての注目すべき変更はこのファイルに記録されます。\n\nフォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、\n[セマンティック バージョニング](https://semver.org/lang/ja/) に準拠しています。\n\n## [2.0.0] - 2026-04-02 — Kashiwazaki SEO OGP Manager から改名・機能拡張\n\n### Added\n- プラグイン名を Kashiwazaki SEO OGP Manager → Kashiwazaki SEO Rich Preview Manager に変更\n- Meta Thumbnail (`<meta name=\"thumbnail\">`) 出力機能を追加\n- PageMap (HTMLコメント形式) 出力機能を追加\n- 全5機能（OGP / Twitter Card / Meta Thumbnail / PageMap / Robots）の一括重複チェック機能を追加\n- 旧プラグイン（Kashiwazaki SEO OGP Manager）の自動無効化＆管理画面通知機能を追加\n- 旧プラグインからのオプション・post meta 自動マイグレーション機能を追加\n- `ksrpm_enable_meta_thumbnail_output` フィルターを追加\n- `ksrpm_enable_pagemap_output` フィルターを追加\n- `ksrpm_enable_robots_max_image_output` フィルターを追加\n- `ksrpm_meta_thumbnail_url` フィルターを追加\n- `ksrpm_pagemap_data` フィルターを追加\n\n### Changed\n- 設定画面をカード形式のUIに刷新（トグルスイッチ、SNS / SERP / AIO バッジ）\n- Robots max-image-preview 出力をOGPブロックから独立した出力ブロックに分離\n- Robots max-image-preview のデフォルトをOFFに変更（WordPress 5.7以降はWP本体が自動出力するため）\n- 設定リンクのURLを修正（add_menu_page対応）\n- 全クラスプレフィックスを `KSOM_` → `KSRPM_` に変更\n- 全フィルター / アクションフックプレフィックスを `ksom_` → `ksrpm_` に変更\n- オプション名を `ksom_options` → `ksrpm_options` に変更\n- post metaキープレフィックスを `_ksom_` → `_ksrpm_` に変更\n\n## [1.0.0] - 2025-01-13 — Kashiwazaki SEO OGP Manager として初回リリース\n\n### Added\n- OGP（Open Graph Protocol）タグ出力機能\n- Twitter Card メタタグ出力機能\n- 投稿タイプごとのOGP出力制御\n- 投稿編集画面のOGP Settingsメタボックス（タイトル、説明、画像、タイプ）\n- OGP画像の自動選択（カスタム画像 → アイキャッチ画像 → デフォルト画像）\n- OGP画像の width / height 自動出力\n- article:タグの動的出力（published_time, modified_time, author, section, tag）\n- Robots Meta（max-image-preview:large）出力機能\n- Facebook App ID 対応\n- Twitter ユーザー名（twitter:site）対応\n- デフォルトOGP画像設定\n- 投稿タイプ一括選択機能\n- 日本語ファイル名画像のURLエンコード対応\n- 管理画面の日本語化\n\n[2.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-rich-preview-manager/compare/v1.0.0...v2.0.0\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-rich-preview-manager/releases/tag/v1.0.0\n",
-      "is_security": false,
-      "versions": [
-        {
-          "version": "2.0.0",
-          "types": [
-            "update"
-          ]
-        },
-        {
-          "version": "1.0.0",
-          "types": [
-            "update"
-          ]
-        }
-      ],
-      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-rich-preview-manager",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-rich-preview-manager/archive/refs/tags/v2.0.0-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-schema-content-type-builder",
