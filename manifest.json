@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-09-13T21:53:57.192Z",
+  "generated_at": "2026-09-14T02:07:53.405Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -1293,11 +1293,18 @@
       "repo": "wp-plugin-kashiwazaki-seo-lock-modified-date",
       "type": "plugin",
       "name": "Kashiwazaki Seo Lock Modified Date",
-      "latest_version": "1.0.1",
-      "last_updated": "2026-04-10T09:16:01Z",
-      "changelog": "# Changelog\n\n## [1.0.1] - 2025-12-30\n\n### Added\n- デフォルトロック設定機能（設定画面からON/OFF切り替え可能）\n- 投稿一覧での一括ロック/解除機能（バルクアクション）\n- 設定画面から全投稿を一括ロック/解除する機能\n\n### Changed\n- 設定メニューをトップレベルメニューに変更（位置81）\n\n## [1.0.0] - 2025-10-26\n\n### Added\n- 更新日ロック機能の実装\n- 手動更新日変更機能の実装\n- 投稿タイプ選択機能\n- メタボックスUI\n- AJAX処理による日時変更\n- 「公開日と同じにする」ボタン\n- デフォルトロック機能\n- プラグイン一覧に設定リンク追加\n\n### Fixed\n- ロック機能が正しく動作しない問題を修正\n- フィルターの優先度を調整\n\n### Improved\n- モジュラー設計への分割\n- セキュリティ強化（nonce検証）\n- コードの最適化",
+      "latest_version": "1.0.2",
+      "last_updated": "2026-09-14T00:57:15Z",
+      "changelog": "# Changelog\n\n## [1.0.2] - 2026-09-14\n\n### Fixed\n- 設定で対象の投稿タイプをすべて外すと、新規投稿やメディアの追加時に致命的エラーになり、設定画面も開けなくなる問題を修正\n- 「更新日を変更」で指定した日付が、その後の保存で現在時刻に上書きされることがある問題を修正（変更と同時にロックを有効にする）\n- ロックを ON にしてそのまま保存すると、その保存で更新日が変わってしまう問題を修正（ロックの切り替えをその場で保存するように変更）\n- ロック状態が記録されていない投稿が、画面ではロック ON に見えるのに保存時にロックされない問題を修正\n- 下書きの時点からロックが効き、公開後に更新日が公開日より前のままになる／GMT の更新日が記録されない問題を修正\n- 別の投稿の保存に、編集中の投稿のロック設定が適用されてしまう問題を修正\n- メディア（添付ファイル）でロックが効かない問題を修正\n- 設定で対象外にした投稿タイプの投稿が、見えないところでロックされ続ける問題を修正\n- 手動変更がサイトマップやキャッシュ系プラグインに通知されない問題を修正（投稿の更新と同じ WordPress のフックを発火）\n- 保存後にメタボックスの「現在の更新日時」が古いまま表示される問題を修正\n- 「公開日と同じにする」で更新日が公開日より最大 59 秒前になる問題を修正\n- 予約投稿の自動公開時に、ロック中の投稿の更新日が公開日より前に残る問題を修正\n- マニュアル・readme の手順が実際の動作と異なっていた記述を修正\n\n### Added\n- 設定画面に「日付の不整合を確認・修復」を追加（更新日が公開日より前・GMT 未記録の投稿を修復）\n- 手動で入力した日時が未反映のまま保存しようとしたときの警告\n\n### Changed\n- ロック状態が記録されていない既存の投稿は、設定「デフォルトでロックする」に従ってロックされるようになりました（ロックしたくない場合はデフォルトを OFF にするか一括ロック解除）\n- 未公開（下書き・レビュー待ち・予約）の投稿ではロックが効かず、公開後に有効になります\n- 手動変更は本文に触れず更新日だけを書き換え、ロックを自動で ON にします。未来の日時は指定できず、公開日より前の日時は公開日時に合わせます\n- ロックの切り替えは、チェックした時点で保存されます\n\n## [1.0.1] - 2025-12-30\n\n### Added\n- デフォルトロック設定機能（設定画面からON/OFF切り替え可能）\n- 投稿一覧での一括ロック/解除機能（バルクアクション）\n- 設定画面から全投稿を一括ロック/解除する機能\n\n### Changed\n- 設定メニューをトップレベルメニューに変更（位置81）\n\n## [1.0.0] - 2025-10-26\n\n### Added\n- 更新日ロック機能の実装\n- 手動更新日変更機能の実装\n- 投稿タイプ選択機能\n- メタボックスUI\n- AJAX処理による日時変更\n- 「公開日と同じにする」ボタン\n- デフォルトロック機能\n- プラグイン一覧に設定リンク追加\n\n### Fixed\n- ロック機能が正しく動作しない問題を修正\n- フィルターの優先度を調整\n\n### Improved\n- モジュラー設計への分割\n- セキュリティ強化（nonce検証）\n- コードの最適化\n\n[1.0.2]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-lock-modified-date/releases/tag/v1.0.2-dev\n[1.0.1]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-lock-modified-date/releases/tag/v1.0.1\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-lock-modified-date/releases/tag/v1.0.0\n",
       "is_security": false,
       "versions": [
+        {
+          "version": "1.0.2",
+          "types": [
+            "bug",
+            "update"
+          ]
+        },
         {
           "version": "1.0.1",
           "types": [
@@ -1313,7 +1320,7 @@
         }
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-lock-modified-date",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-lock-modified-date/archive/refs/tags/v1.0.1-dev.zip"
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-lock-modified-date/archive/refs/tags/v1.0.2-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-media-control",
