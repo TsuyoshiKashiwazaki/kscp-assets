@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-09-15T22:31:19.026Z",
+  "generated_at": "2026-09-16T02:07:38.985Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -1709,7 +1709,7 @@
       "type": "plugin",
       "name": "Kashiwazaki Seo Stepflow",
       "latest_version": "1.0.0",
-      "last_updated": "2026-09-15T01:05:12Z",
+      "last_updated": "2026-09-16T01:23:37Z",
       "changelog": "# Changelog\n\n本プロジェクトの主な変更点を記録します。フォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に準拠し、[セマンティック バージョニング](https://semver.org/lang/ja/) を採用しています。\n\n## [1.0.0] - 2026-09-15\n\n### Added\n\n- ブロック「Kashiwazaki SEO Step Flow」と子ブロック「ステップ」を追加しました。ステップ名と説明文をエディターの画面上で直接入力でき、「＋ ステップを追加」ボタンとブロックツールバーで追加・並べ替えができます。\n- 6 種類のデザイン（タイムライン / カード / ビッグナンバー / アローリボン / ホリゾンタル / ミニマル）を追加しました。ブロックの設定パネルとツールバーから切り替えられます。\n- サイト全体の既定デザイン・アクセントカラー・ステップのラベルと、ブロックごとの上書きを追加しました。アクセントカラーに合わせて文字色（白／濃い灰色）を自動で選びます。\n- HowTo 構造化データ（JSON-LD）の出力を追加しました。名前はブロックのタイトル → 直前の見出し → 記事タイトルの順に決まり、各ステップは表示されているステップ名と説明文から作ります。ページに表示されていない情報は出力しません。\n- 番号付きリストブロックからの変換を追加しました。「企画：説明文」「企画｜説明文」の形の行はステップ名と説明文に分けて取り込みます。\n- ショートコード `[ks_stepflow]` を追加しました（`design` / `title` / `accent` / `label` / `howto` / `id` / `class` 属性）。\n- 管理メニュー「Kashiwazaki SEO Step Flow」（位置 81）を追加しました。デザイン設定（プレビュー付き）、設置箇所一覧、使い方の 3 タブ構成です。プラグイン一覧に「設定」リンクを追加しました。\n- 出力前の HowTo を変更・除外できる `ks_stepflow_howto_data` フィルターを追加しました。\n- アンインストール時に設定を削除する処理を追加しました。\n\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-stepflow/releases/tag/v1.0.0\n",
       "is_security": false,
       "versions": [
