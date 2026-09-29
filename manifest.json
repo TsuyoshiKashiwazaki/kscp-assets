@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-09-28T18:53:40.219Z",
+  "generated_at": "2026-09-29T00:02:05.942Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -489,6 +489,33 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-code-clipper",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-code-clipper/archive/refs/tags/v1.0.2-dev.zip"
+    },
+    {
+      "slug": "wp-plugin-kashiwazaki-seo-code-snippet-shortcode",
+      "repo": "wp-plugin-kashiwazaki-seo-code-snippet-shortcode",
+      "type": "plugin",
+      "name": "Kashiwazaki Seo Code Snippet Shortcode",
+      "latest_version": "1.0.1",
+      "last_updated": "2026-04-10T09:48:51Z",
+      "changelog": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\n## [1.0.1] - 2025-12-03\n\n### Fixed\n- Gutenberg block not rendering on frontend due to incorrect init action timing\n- HTML type snippets not properly rendering block editor content (now uses do_blocks())\n\n### Added\n- Inline CSS output for block styles when snippets are inserted via shortcode (fixes missing styles in WordPress 6.x)\n\n## [1.0.0] - 2025-11-25\n\n### Added\n- Initial release\n- Code snippet management (PHP, HTML, CSS, JavaScript)\n- Shortcode support (`[kscss_snippet id=\"123\"]` or `[kscss_snippet name=\"slug\"]`)\n- Gutenberg block integration\n- Classic editor integration (TinyMCE button)\n- Usage tracking for snippets\n- Revision management for code changes\n- Auto-insert feature: automatically insert snippets at specific positions in post content\n- Multiple insertion position options (before/after content, first/last paragraph, H2/H3 headings)\n- Multiple post type selection with checkboxes\n- Check all / Uncheck all buttons for post type selection\n- Accurate position detection that excludes content added by other plugins\n- Support for content containing emojis\n\n[1.0.1]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-code-snippet-shortcode/releases/tag/v1.0.1\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-code-snippet-shortcode/releases/tag/v1.0.0\n",
+      "is_security": false,
+      "versions": [
+        {
+          "version": "1.0.1",
+          "types": [
+            "bug",
+            "update"
+          ]
+        },
+        {
+          "version": "1.0.0",
+          "types": [
+            "update"
+          ]
+        }
+      ],
+      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-code-snippet-shortcode",
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-code-snippet-shortcode/archive/refs/tags/v1.0.1-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-concierge",
