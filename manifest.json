@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-11T23:17:46.165Z",
+  "generated_at": "2026-10-12T03:03:47.479Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -1040,6 +1040,26 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-headline-generator",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-headline-generator/archive/refs/tags/v1.0.3-dev.zip"
+    },
+    {
+      "slug": "wp-plugin-kashiwazaki-seo-heatmap",
+      "repo": "wp-plugin-kashiwazaki-seo-heatmap",
+      "type": "plugin",
+      "name": "Kashiwazaki Seo Heatmap",
+      "latest_version": "1.0.0",
+      "last_updated": "2026-10-12T02:53:51Z",
+      "changelog": "# 変更履歴\n\nこのファイルは Kashiwazaki SEO Heatmap の利用者向けの変更履歴です。\n書式は [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に合わせています。\n\n## [1.0.0] - 2026-10-12\n\n最初のリリースです。\n\n### 追加\n\n- 投稿・固定ページ・カスタム投稿のクリックヒートマップ表示。\n- 設定画面で選んだ投稿タイプだけを計測する仕組み。\n- クリックされた要素を CSS セレクタ単位で数え、要素ごとのランキングを出す機能。\n- ページ・期間・端末（デスクトップ / タブレット / スマートフォン）での絞り込み。\n- スクロール到達率（10% 刻み）の表示。\n- マウスムーブの分布表示（任意）。\n- レイジクリックの検出。\n- デッドクリックの検出。\n- 外部リンクのクリックの記録。\n- クリック数の多い要素の CSV 書き出し。\n- 配色の切り替え。\n- 生データと集計データを分けた保存。生データは保持期間を過ぎると毎日自動で削除。\n- IP アドレスを保存しない匿名化、Do Not Track の尊重、権限グループ・IP・URL による除外、サンプリング。\n- プラグイン削除時のデータ消去の選択。\n- WordPress のプライバシーポリシーへの提案文。\n- 管理画面の左メニューへの登録（表示位置 81）と、プラグイン一覧からの設定リンク。\n\n[1.0.0]: https://github.com/tsuyoshikashiwazaki/wp-plugin-kashiwazaki-seo-heatmap/releases/tag/v1.0.0\n",
+      "is_security": false,
+      "versions": [
+        {
+          "version": "1.0.0",
+          "types": [
+            "update"
+          ]
+        }
+      ],
+      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-heatmap",
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-heatmap/archive/refs/tags/v1.0.0-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-highlight-marker",
