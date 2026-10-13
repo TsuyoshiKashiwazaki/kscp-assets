@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-13T04:19:30.963Z",
+  "generated_at": "2026-10-13T15:22:56.810Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -1080,6 +1080,26 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-highlight-marker",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-highlight-marker/archive/refs/tags/v1.0.0-dev.zip"
+    },
+    {
+      "slug": "wp-plugin-kashiwazaki-seo-html-cleaner",
+      "repo": "wp-plugin-kashiwazaki-seo-html-cleaner",
+      "type": "plugin",
+      "name": "Kashiwazaki Seo Html Cleaner",
+      "latest_version": "1.0.0",
+      "last_updated": "2026-10-13T08:14:16Z",
+      "changelog": "# Changelog\n\n## [1.0.0] - 2026-10-13\n\n### Added\n\n- 初回リリース。\n- 公開ページのHTMLから不要なHTMLコメントを除去する機能を追加。\n- 空行（空白のみの行の連続）を除去する機能を追加。\n- 条件付きコメント（`<!--[if ...]> ... <![endif]-->`）を保持。\n- `pre`・`textarea`・`script`・`style` 内の内容を保護。\n- 管理画面でコメント除去・空行除去の ON / OFF と除外URLの設定を追加。\n- プラグイン一覧に「設定」リンクを追加。\n\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-html-cleaner/releases/tag/v1.0.0\n",
+      "is_security": false,
+      "versions": [
+        {
+          "version": "1.0.0",
+          "types": [
+            "update"
+          ]
+        }
+      ],
+      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-html-cleaner",
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-html-cleaner/archive/refs/tags/v1.0.0-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-image-viewer",
