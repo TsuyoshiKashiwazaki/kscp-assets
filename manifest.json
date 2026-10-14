@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-14T09:07:31.262Z",
+  "generated_at": "2026-10-14T16:06:44.249Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -1802,6 +1802,26 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-speed-booster",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-speed-booster/archive/refs/tags/v1.0.1-dev.zip"
+    },
+    {
+      "slug": "wp-plugin-kashiwazaki-seo-staypop",
+      "repo": "wp-plugin-kashiwazaki-seo-staypop",
+      "type": "plugin",
+      "name": "Kashiwazaki Seo Staypop",
+      "latest_version": "1.0.0",
+      "last_updated": "2026-10-14T12:32:15Z",
+      "changelog": "# Changelog\n\n## [1.0.0] - 2026-10-14\n\n### Added\n\n- 初回リリース。\n- 離れそうな瞬間の表示: PC はマウスが画面の上端から外に出たとき（感度・待ち時間の設定）、スマホは下に読んだあと上に戻るスクロールをしたとき。\n- そのほかのきっかけ: ページを ○ 秒見たとき（画面に出ていた時間だけを数える）、○ ％までスクロールしたとき。「どれか1つ」「すべてそろったとき」の組み合わせ。\n- 表示の抑制: 開いてから ○ 秒の間、マウスを少し動かしただけのとき、フォームに入力している間（入力のあと 10 秒も）は表示しない。見送ったきっかけを、あとから表示しない。\n- 表示するページ・表示しないページの指定（URL・パス・投稿・固定ページ・カテゴリー）。\n- 表示する回数（1回の訪問につき1回まで・1日1回まで・最初の1回だけ・ページを開くたびに）、閉じたあと ○ 日は表示しない設定、掲載期間、優先度。\n- 出し分け（ログイン状態・ユーザーの権限・流入元 utm_source・参照元のサイト）。\n- 内容（画像・スマホ用の画像・見出し・説明文・ボタン・サブリンク）とテンプレート（クーポン・資料請求・LINE登録・関連記事・問い合わせ誘導）。\n- デザイン（中央ポップアップ・下部バナー・隅からのスライド表示、幅・色・角の丸み・余白・文字の大きさ・背景の暗さ）。\n- タブで切り替える編集画面と、PC・スマホ・A/B を確認できるプレビュー（実物大の表示にも対応）。\n- 一覧と編集画面に、PC・スマホそれぞれの表示のタイミングを文章で表示。\n- サイトでテスト表示（あと何をすれば表示されるかを画面の左下に表示。記録はしない）。\n- バナー一覧（状態の表示、表示・停止の切り替え、複製、ゴミ箱と復元）。\n- 成果（コンバージョン）の計測と、成果に至った人には表示しない設定。\n- A/B テスト（見出し・ボタンの文言・画像を決めた割合で出し分け）。\n- 集計（表示・クリック・閉じた・成果、クリック率・成果率をバナー別・パターン別・端末別・ページ別に表示）。\n- 計測のオン・オフ、同意した人だけ記録する設定、トラッキング拒否（Do Not Track）の尊重、ログの自動削除。\n- キーボード・読み上げへの対応（フォーカスの移動と復帰、Esc で閉じる）と、動きを減らす設定への対応。\n- すべてのバナーと設定の書き出し・読み込み（読み込んだバナーは停止中で追加）。\n- 利用者向けマニュアル（docs/）。\n\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-staypop/releases/tag/v1.0.0\n",
+      "is_security": false,
+      "versions": [
+        {
+          "version": "1.0.0",
+          "types": [
+            "update"
+          ]
+        }
+      ],
+      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-staypop",
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-staypop/archive/refs/tags/v1.0.0-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-stepflow",
