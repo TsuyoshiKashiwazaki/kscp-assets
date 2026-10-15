@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-15T02:11:34.000Z",
+  "generated_at": "2026-10-15T08:40:20.522Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -1046,11 +1046,18 @@
       "repo": "wp-plugin-kashiwazaki-seo-heatmap",
       "type": "plugin",
       "name": "Kashiwazaki Seo Heatmap",
-      "latest_version": "1.0.0",
-      "last_updated": "2026-10-12T02:53:51Z",
-      "changelog": "# 変更履歴\n\nこのファイルは Kashiwazaki SEO Heatmap の利用者向けの変更履歴です。\n書式は [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に合わせています。\n\n## [1.0.0] - 2026-10-12\n\n最初のリリースです。\n\n### 追加\n\n- 投稿・固定ページ・カスタム投稿のクリックヒートマップ表示。\n- 設定画面で選んだ投稿タイプだけを計測する仕組み。\n- クリックされた要素を CSS セレクタ単位で数え、要素ごとのランキングを出す機能。\n- ページ・期間・端末（デスクトップ / タブレット / スマートフォン）での絞り込み。\n- スクロール到達率（10% 刻み）の表示。\n- マウスムーブの分布表示（任意）。\n- レイジクリックの検出。\n- デッドクリックの検出。\n- 外部リンクのクリックの記録。\n- クリック数の多い要素の CSV 書き出し。\n- 配色の切り替え。\n- 生データと集計データを分けた保存。生データは保持期間を過ぎると毎日自動で削除。\n- IP アドレスを保存しない匿名化、Do Not Track の尊重、権限グループ・IP・URL による除外、サンプリング。\n- プラグイン削除時のデータ消去の選択。\n- WordPress のプライバシーポリシーへの提案文。\n- 管理画面の左メニューへの登録（表示位置 81）と、プラグイン一覧からの設定リンク。\n\n[1.0.0]: https://github.com/tsuyoshikashiwazaki/wp-plugin-kashiwazaki-seo-heatmap/releases/tag/v1.0.0\n",
+      "latest_version": "1.0.1",
+      "last_updated": "2026-10-15T04:01:29Z",
+      "changelog": "# 変更履歴\n\nこのファイルは Kashiwazaki SEO Heatmap の利用者向けの変更履歴です。\n書式は [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に合わせています。\n\n## [1.0.1] - 2026-10-15\n\n### 修正\n\n- 通信の都合で届かなかった計測データを、ブラウザに一時的に残して次のページから送り直すようにし、取りこぼしを防ぎました。同じ記録は番号で見分け、二重に数えません。\n- ログイン中のユーザー・除外する権限グループ・除外する IP・除外する URL を、ページがキャッシュされるサイトでも、ログインの前後をまたぐ記録でも、計測から外すようにしました。\n- 「追跡しない（Do Not Track）」を尊重する場合に、同じ記録を重複して数えないようにしました。\n- 訪問者数を、同じ訪問者を重複なく数えるようにしました（直近の期間が保持期間を超えるときは「訪問者数（直近 N 日）」と表示します）。日付をサイトのタイムゾーンで数えるようにしました。\n- 読み込みの途中に離れた・読み込みに時間がかかったページのスクロール到達率が、正しく数えられるようにしました。\n- 管理画面のヒートマップのプレビューが画面の高さの窓に収まり、固定表示の要素があるページでも位置がずれないようにしました。\n- 計測データの表が InnoDB でないサイトで、保存を途中で失敗しても二重に数えないよう、予約の実行で自動的に変換するようにしました。変換できないときは、ダッシュボードにお知らせを表示します。\n- CDN や中継サーバーの後ろにあるサイトで、転送された訪問者の IP と照らして除外を判定するようにしました。\n- マルチサイトで、設定が保存されていないサイトでも、有効化・自動削除の予約・削除時の扱いが正しく働くようにしました。\n- 計測用・管理画面用の JavaScript と CSS を読み込む URL に、ファイルの更新時刻を付けるようにしました。ファイルを更新したときに、CDN やブラウザに古いファイルが残り続けません。\n\n### 追加\n\n- 管理画面の 3 つの画面（ヒートマップ・ダッシュボード・設定）の上部に、画面を行き来するタブ。設定を保存しないままタブで移動するときは、確かめる案内を出します。\n- ダッシュボードに、訪問者のブラウザからまだ届いていない操作の件数のお知らせ（届けば減ります）。\n- プライバシーポリシーの提案文に、ブラウザの保存領域（localStorage）と Cookie の説明を追加。\n\n## [1.0.0] - 2026-10-12\n\n最初のリリースです。\n\n### 追加\n\n- 投稿・固定ページ・カスタム投稿のクリックヒートマップ表示。\n- 設定画面で選んだ投稿タイプだけを計測する仕組み。\n- クリックされた要素を CSS セレクタ単位で数え、要素ごとのランキングを出す機能。\n- ページ・期間・端末（デスクトップ / タブレット / スマートフォン）での絞り込み。\n- スクロール到達率（10% 刻み）の表示。\n- マウスムーブの分布表示（任意）。\n- レイジクリックの検出。\n- デッドクリックの検出。\n- 外部リンクのクリックの記録。\n- クリック数の多い要素の CSV 書き出し。\n- 配色の切り替え。\n- 生データと集計データを分けた保存。生データは保持期間を過ぎると毎日自動で削除。\n- IP アドレスを保存しない匿名化、Do Not Track の尊重、権限グループ・IP・URL による除外、サンプリング。\n- プラグイン削除時のデータ消去の選択。\n- WordPress のプライバシーポリシーへの提案文。\n- 管理画面の左メニューへの登録（表示位置 81）と、プラグイン一覧からの設定リンク。\n\n[1.0.1]: https://github.com/tsuyoshikashiwazaki/wp-plugin-kashiwazaki-seo-heatmap/releases/tag/v1.0.1\n[1.0.0]: https://github.com/tsuyoshikashiwazaki/wp-plugin-kashiwazaki-seo-heatmap/releases/tag/v1.0.0\n",
       "is_security": false,
       "versions": [
+        {
+          "version": "1.0.1",
+          "types": [
+            "bug",
+            "update"
+          ]
+        },
         {
           "version": "1.0.0",
           "types": [
@@ -1059,7 +1066,7 @@
         }
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-heatmap",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-heatmap/archive/refs/tags/v1.0.0-dev.zip"
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-heatmap/archive/refs/tags/v1.0.1-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-highlight-marker",
