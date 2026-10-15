@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-15T08:40:20.522Z",
+  "generated_at": "2026-10-15T15:54:22.904Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -1608,6 +1608,26 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-published-last-updated-dates",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-published-last-updated-dates/archive/refs/tags/v1.0.3-dev.zip"
+    },
+    {
+      "slug": "wp-plugin-kashiwazaki-seo-recommended-ranking",
+      "repo": "wp-plugin-kashiwazaki-seo-recommended-ranking",
+      "type": "plugin",
+      "name": "Kashiwazaki Seo Recommended Ranking",
+      "latest_version": "1.0.0",
+      "last_updated": "2026-10-15T12:08:09Z",
+      "changelog": "# Changelog\n\n## [1.0.0] - 2026-10-15\n\n### Added\n\n- 初回リリース。\n- ランキングの作成・編集・複製・削除（記事とは別に一元管理し、複数の記事で使い回せる）。\n- 見出し（h2・h3・h4・太字の文字・表示しない）と概要説明。\n- 3位〜10位の順位。各順位の名称・簡単な説明・URL。順位の追加・削除・並べ替え（ドラッグと矢印のボタン）。\n- 入力中の内容のプレビュー（PC・スマホの幅、構造化データの確認）。\n- 投稿・固定ページ・カスタム投稿の編集画面で、表示するランキングと表示位置（本文の上・本文の下・手動・表示しない）を選ぶボックス。\n- ショートコード `[kashiwazaki_seo_recommended_ranking]`・`[kashiwazaki_seo_recommended_ranking id=\"123\"]`。\n- ボタンの文言、新しいタブで開く設定、外部リンクの rel（nofollow・sponsored）。\n- 5 つのデザインの型（スタンダード・王冠・シンプル・比較表・上位3つを大きく）。設定画面で既定の型を選び、ランキングごとに変えられる。設定画面の見本で見比べられる。\n- スマホでも見やすいデザイン（置いた場所の幅で切り替える）、暗い色のテーマへの対応、1位〜3位の金・銀・銅、メインの色。\n- 構造化データ（ItemList・ListItem・Recommendation、対象の種類の選択、Guide でのまとめ）。\n- ランキング一覧のショートコードと、使っているページの数。\n- 設定画面（ランキングを選べる投稿タイプ、ボタンの文言、色、構造化データ、削除するときのデータ）。\n- 管理メニューは 1 項目で、画面の上のタブ（ランキング一覧・設定）で行き来できる。\n",
+      "is_security": false,
+      "versions": [
+        {
+          "version": "1.0.0",
+          "types": [
+            "update"
+          ]
+        }
+      ],
+      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-recommended-ranking",
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-recommended-ranking/archive/refs/tags/v1.0.0-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-related-posts",
