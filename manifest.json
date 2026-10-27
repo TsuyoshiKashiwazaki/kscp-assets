@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-27T09:25:15.453Z",
+  "generated_at": "2026-10-27T16:59:05.824Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -90,6 +90,27 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-llmo-md-subdomain",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-llmo-md-subdomain/archive/refs/tags/v1.0.3-dev.zip"
+    },
+    {
+      "slug": "wp-plugin-kashiwazaki-pattern-lock",
+      "repo": "wp-plugin-kashiwazaki-pattern-lock",
+      "type": "plugin",
+      "name": "Kashiwazaki Pattern Lock",
+      "latest_version": "1.0.0",
+      "last_updated": "2026-10-27T11:31:36Z",
+      "changelog": "# Changelog\n\n## 1.0.0 (2026-10-27)\n\n初版。\n\n### 追加\n\n- WordPress 標準ログイン画面（`wp-login.php`）への 9 点パターン入力欄の自動表示。\n- マウス・タッチ・キーボードでの入力。選んだ点と点を結ぶ線の描画。\n- クリア（入力のやり直し）。\n- 管理画面「Kashiwazaki Pattern Lock」（管理メニュー位置 81）でのパターン設定・変更・解除。\n  - パターン未設定の間は「初期設定」画面だけを表示し、設定後は管理画面（変更・解除・ログイン制限）に切り替える。\n  - 有効化した直後の管理画面では、初期設定画面へ自動で案内する。\n  - 確認のため 2 回入力。\n  - 4 点以上、同じ点の重複不可、飛び越えた点の自動補完（Android と同じ規則）。\n  - 設定・変更は `manage_options` 権限のみ。\n  - 4〜5 点のパターンには、6 点以上への変更をすすめる注意を表示する。\n- サーバー側でのパターン検証（`authenticate` フィルター、優先度 30）。\n- パターンの保存に `wp_hash_password()`（bcrypt）を使用。平文は保存しない。\n- 連続失敗によるログイン制限（`IPアドレス＋ユーザー名` 単位、および IP 単位の広い上限）。回数と時間は管理画面で設定。\n- 管理画面の保存処理に権限確認と nonce 検証。\n- プラグイン一覧の「設定」リンク（未設定のときは「初期設定」）。\n- パターン未入力・4 点未満のときは、送信前に画面側でも知らせる（サーバー側の検証は必ず行う）。\n- パターン未設定時の案内表示。\n- アンインストール時の設定・一時データの削除。\n\n### 修正（レビュー指摘）\n\n- **失敗回数の保存を専用テーブルに変更**（`{接頭辞}kashiwazaki_pattern_lock_attempts`）。1 本の SQL で加算するため、同時に失敗が起きても回数が失われない（transient の「読んでから書く」方式を廃止）。\n- **認証バイパスを修正**: `wp-login.php?action=（未定義の値）` を付けた POST が、WordPress 本体では通常ログインとして処理される一方、プラグイン側は対象外と判定してパターン検証を省略していた。対象判定を「除外リスト方式」に変更し、未定義の action もログインとして検証するようにした。\n- ログイン制限中は、パターンの照合（bcrypt）を実行しないようにした。\n- ログイン制限の期限を「上限に達した時点から」に修正（画面の説明と一致）。\n- メールアドレスでログインした場合も、成功時に失敗回数を消すようにした。\n- 設定・変更・解除の保存結果を確認し、失敗時はエラー通知を出すようにした。\n- マルチサイトのアンインストールで、101 サイト目以降も処理するようにした。\n- 有効化時の目印（transient）もアンインストールで削除するようにした。\n- ポインターを離した位置の点を取りこぼさないようにした。\n- 入力済みの状態表示を点数のみにし、パターンの並びを画面に残さないようにした。\n\n### 対応範囲\n\n- パターン認証は標準ログイン画面のみ。REST API・アプリケーションパスワード・XML-RPC・Cookie 認証は対象外。\n",
+      "is_security": false,
+      "versions": [
+        {
+          "version": "1.0.0",
+          "types": [
+            "bug",
+            "update"
+          ]
+        }
+      ],
+      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-pattern-lock",
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-pattern-lock/archive/refs/tags/v1.0.0-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-all-content-lister",
