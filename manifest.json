@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-10-28T23:42:12.342Z",
+  "generated_at": "2026-10-29T03:16:51.089Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -90,6 +90,26 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-llmo-md-subdomain",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-llmo-md-subdomain/archive/refs/tags/v1.0.3-dev.zip"
+    },
+    {
+      "slug": "wp-plugin-kashiwazaki-next-gen-images",
+      "repo": "wp-plugin-kashiwazaki-next-gen-images",
+      "type": "plugin",
+      "name": "Kashiwazaki Next Gen Images",
+      "latest_version": "1.0.0",
+      "last_updated": "2026-10-29T03:09:24Z",
+      "changelog": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [1.0.0] - 2026-10-29\n- 初回リリース。\n- WebP・AVIF への変換（GD / Imagick）、アップロード時の自動変換、既存画像の一括変換（管理画面・WP-CLI）。\n- `<picture>` タグによる配信（サーバー設定不要・ページキャッシュ対応）。\n- 元画像は削除・変更しない。変換ファイルは「元のファイル名.webp / .avif」として同じフォルダに保存。\n- 配信テスト（Content-Type の確認）と、問題のある形式の自動停止。\n- 管理画面: 区画ごとのカード・スイッチ・スライダー・ツールチップで整理。スマホ幅に対応。\n- 一括変換: 進み具合をサーバーに保存。別のページへ移っても進捗が出続け、停止しても続きから再開できる。\n",
+      "is_security": false,
+      "versions": [
+        {
+          "version": "1.0.0",
+          "types": [
+            "update"
+          ]
+        }
+      ],
+      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-next-gen-images",
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-next-gen-images/archive/refs/tags/v1.0.0-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-pattern-lock",
