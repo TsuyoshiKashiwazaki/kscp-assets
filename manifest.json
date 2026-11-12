@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-12T01:44:09.415Z",
+  "generated_at": "2026-11-12T11:58:08.669Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -54,11 +54,17 @@
       "repo": "wp-plugin-kashiwazaki-next-gen-images",
       "type": "plugin",
       "name": "Kashiwazaki Next Gen Images",
-      "latest_version": "1.0.0",
-      "last_updated": "2026-10-29T03:09:24Z",
-      "changelog": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [1.0.0] - 2026-10-29\n- 初回リリース。\n- WebP・AVIF への変換（GD / Imagick）、アップロード時の自動変換、既存画像の一括変換（管理画面・WP-CLI）。\n- `<picture>` タグによる配信（サーバー設定不要・ページキャッシュ対応）。\n- 元画像は削除・変更しない。変換ファイルは「元のファイル名.webp / .avif」として同じフォルダに保存。\n- 配信テスト（Content-Type の確認）と、問題のある形式の自動停止。\n- 管理画面: 区画ごとのカード・スイッチ・スライダー・ツールチップで整理。スマホ幅に対応。\n- 一括変換: 進み具合をサーバーに保存。別のページへ移っても進捗が出続け、停止しても続きから再開できる。\n",
+      "latest_version": "1.0.1",
+      "last_updated": "2026-11-12T06:25:12Z",
+      "changelog": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [1.0.1] - 2026-11-12\n\n### Added\n- GD も Imagick も AVIF を書き出せないサーバーで、外部の変換プログラム「cavif」を使って AVIF を作れるようにした（任意）。設定画面の「cavif の場所」（詳細設定）に場所を入力したときだけ動く。入力しなければ、これまでと同じ動きで、外部のプログラムは一切実行しない。\n- cavif が使う CPU とスレッドの数は、2 つに抑える（共用サーバーで、同じアカウントのほかのプログラムが、変換のあいだ起動できなくなるのを防ぐ）。\n- cavif の場所を入力できるのは、プラグインをインストールできる管理者だけ。入力できるのは、名前が「cavif」で始まるファイルだけ。`wp-config.php` で場所を指定することもでき、その場合はそちらが優先される（設定画面からは変えられなくなる）。\n- 設定の「変換エンジン」に cavif を追加（AVIF を作るときに cavif を先に使いたい場合）。\n- 診断タブの「変換エンジン」に cavif の行（状態と、使えないときの理由）を追加。\n- マニュアルに「cavif で AVIF を作る」を追加。\n- サーバーが WebP・AVIF を正しい種類（Content-Type）で配信していないときに、診断タブの「自動で直す」で直せるようにした。画像フォルダの `.htaccess` に種類の指定を書き足す。先にテスト用のフォルダで試し、効かないサーバーでは何も変更しない。書き足したあとの確認で問題があれば、書き足す前の状態に戻す。「書き足した指定を消す」で取り除ける（プラグインの削除時にも取り除く）。\n\n### Changed\n- AVIF を作る順番は Imagick → GD → cavif（GD・Imagick でのこれまでの変換は変更なし）。\n- 診断タブの「変換エンジン」の表を、狭い画面でもはみ出さないようにした。\n- 配信テストを、実際の変換ファイルと同じ形の名前（`〜.jpg.avif` など）で確かめるようにした。これまでの名前では、サーバーが AVIF を別の種類（JPEG）として返していても見つけられないことがあった。\n\n## [1.0.0] - 2026-10-29\n- 初回リリース。\n- WebP・AVIF への変換（GD / Imagick）、アップロード時の自動変換、既存画像の一括変換（管理画面・WP-CLI）。\n- `<picture>` タグによる配信（サーバー設定不要・ページキャッシュ対応）。\n- 元画像は削除・変更しない。変換ファイルは「元のファイル名.webp / .avif」として同じフォルダに保存。\n- 配信テスト（Content-Type の確認）と、問題のある形式の自動停止。\n- 管理画面: 区画ごとのカード・スイッチ・スライダー・ツールチップで整理。スマホ幅に対応。\n- 一括変換: 進み具合をサーバーに保存。別のページへ移っても進捗が出続け、停止しても続きから再開できる。\n",
       "is_security": false,
       "versions": [
+        {
+          "version": "1.0.1",
+          "types": [
+            "update"
+          ]
+        },
         {
           "version": "1.0.0",
           "types": [
@@ -67,7 +73,7 @@
         }
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-next-gen-images",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-next-gen-images/archive/refs/tags/v1.0.0-dev.zip"
+      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-next-gen-images/archive/refs/tags/v1.0.1-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-pattern-lock",
