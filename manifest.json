@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-24T04:29:54.930Z",
+  "generated_at": "2026-11-24T19:11:05.515Z",
   "owner": "TsuyoshiKashiwazaki",
   "items": [
     {
@@ -1284,26 +1284,6 @@
       ],
       "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-link-card",
       "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-link-card/archive/refs/tags/v1.0.13-dev.zip"
-    },
-    {
-      "slug": "wp-plugin-kashiwazaki-seo-link-doctor",
-      "repo": "wp-plugin-kashiwazaki-seo-link-doctor",
-      "type": "plugin",
-      "name": "Kashiwazaki Seo Link Doctor",
-      "latest_version": "1.0.0",
-      "last_updated": "2026-04-10T09:34:51Z",
-      "changelog": "# 変更履歴\r\n\r\nこのプロジェクトの主な変更はこのファイルに記録されます。\r\n\r\nフォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に基づいており、\r\n[セマンティック バージョニング](https://semver.org/lang/ja/) に準拠しています。\r\n\r\n## [1.0.0] - 2025-12-29\r\n\r\n### 追加\r\n- Kashiwazaki SEO Link Doctor 初回リリース\r\n- 軽量なHEADリクエストによるHTTPステータスチェック\r\n- リアルタイム進捗表示（n/n件、%）\r\n- iframeによるビジュアルプレビュー（ハイライト表示、自動スクロール）\r\n- WordPress transientsを使用した24時間ステータスキャッシュ\r\n- 手動キャッシュクリア機能\r\n- 個別リンク再チェックボタン（キャッシュスキップ）\r\n- ページ全体の一括再チェック\r\n- Excel/スプレッドシート用TSVクリップボードエクスポート\r\n- ソート可能な結果テーブル\r\n- 長いURLの折りたたみ/展開トグル\r\n- 使い方ガイド付き説明書タブ\r\n- 非HTTPスキームの自動除外（tel:, mailto:, javascript:等）\r\n- プラグイン一覧に設定リンク追加\r\n- アンインストール時のキャッシュ自動削除\r\n\r\n[1.0.0]: https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-link-doctor/releases/tag/v1.0.0-dev\r\n",
-      "is_security": false,
-      "versions": [
-        {
-          "version": "1.0.0",
-          "types": [
-            "update"
-          ]
-        }
-      ],
-      "html_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-link-doctor",
-      "download_url": "https://github.com/TsuyoshiKashiwazaki/wp-plugin-kashiwazaki-seo-link-doctor/archive/refs/tags/v1.0.0-dev.zip"
     },
     {
       "slug": "wp-plugin-kashiwazaki-seo-link-weaver",
